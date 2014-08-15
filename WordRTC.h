@@ -270,10 +270,10 @@ class WordRTC
   /*!
    */
   InPort<RTC::TimedShort> m_wsScreenIn;
-  RTC::TimedShortSeq m_color;
+  RTC::TimedRGBColour m_color;
   /*!
    */
-  InPort<RTC::TimedShortSeq> m_colorIn;
+  InPort<RTC::TimedRGBColour> m_colorIn;
   
   // </rtc-template>
 
