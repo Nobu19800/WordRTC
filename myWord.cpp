@@ -10,6 +10,8 @@ myWord::myWord()
 
 	FontSize = 10;
 	FontName = "‚l‚r –¾’©";
+
+	Open("");
 }
 
 void myWord::SetFontSize(float fs)

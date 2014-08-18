@@ -72,6 +72,7 @@ WordRTC::WordRTC(RTC::Manager* manager)
 
     // </rtc-template>
 {
+	myWord::Obj = gcnew myWord();
 }
 
 /*!
@@ -103,8 +104,8 @@ RTC::ReturnCode_t WordRTC::onInitialize()
   addOutPort("copyWord", m_copyWordOut);
 
 
-  myWord::Obj = gcnew myWord();
-  myWord::Obj->Open("");
+  
+  
 
   this->addConfigurationSetListener(ON_SET_CONFIG_SET, new MyConfigUpdateParam(this));
 
