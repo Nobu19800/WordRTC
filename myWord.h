@@ -32,10 +32,13 @@ public:
 	void SetFontName(std::string fn);
 
 	//選択位置を変更する関数
-	void MoveSelection(Word::WdUnits m_type, int leng, Word::WdMovementType d_type);
+	void MoveSelection(Word::WdUnits m_type, int leng);
 
 	//選択位置の文字列を取得する関数
 	System::String^ GetSelWord();
+
+	//文字の色を変更する関数
+	void SetFontColor(int r, int g, int b);
 
 	System::String^ filename;
 	Word::Application^ dcApplication;
@@ -44,6 +47,12 @@ public:
 
 	System::String^ FontName;
 	float FontSize;
+
+	int Red, Green, Blue;
+
+	bool MovementType;
+	bool Italic;
+	bool Bold;
 
 	
 };

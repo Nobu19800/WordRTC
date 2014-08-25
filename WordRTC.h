@@ -246,6 +246,10 @@ class WordRTC
   /*!
    */
   InPort<RTC::TimedFloat> m_fontSizeIn;
+  RTC::TimedString m_fontName;
+  /*!
+   */
+  InPort<RTC::TimedString> m_fontNameIn;
   RTC::TimedShort m_wsCharacter;
   /*!
    */
@@ -274,6 +278,21 @@ class WordRTC
   /*!
    */
   InPort<RTC::TimedRGBColour> m_colorIn;
+
+  RTC::TimedBoolean m_MovementType;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_MovementTypeIn;
+
+  RTC::TimedBoolean m_Italic;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_ItalicIn;
+
+  RTC::TimedBoolean m_Bold;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_BoldIn;
   
   // </rtc-template>
 
@@ -307,6 +326,14 @@ class WordRTC
   // </rtc-template>
 
   std::string file_path;
+  float fontsize;
+  std::string fontname;
+  int Red;
+  int Blue;
+  int Green;
+  int Italic;
+  int Bold;
+
 
  private:
   // <rtc-template block="private_attribute">

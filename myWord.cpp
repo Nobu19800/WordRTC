@@ -10,8 +10,24 @@ myWord::myWord()
 
 	FontSize = 10;
 	FontName = "‚l‚r –¾’©";
+	filename = " ";
+
+	Red = 0;
+	Green = 0;
+	Blue = 0;
+
+	MovementType = false;
+	Italic = false;
+	Bold = false;
 
 	Open("");
+}
+
+void myWord::SetFontColor(int r, int g, int b)
+{
+	Red = r;
+	Green = g;
+	Blue = b;
 }
 
 void myWord::SetFontSize(float fs)
@@ -41,7 +57,9 @@ void myWord::SetWord(std::string st)
 	tr->default = gcnew System::String(st.c_str());
 	tr->Font->Size = FontSize;
 	tr->Font->Name = FontName;
-	
+	tr->Font->Bold = Bold;
+	tr->Font->Italic = Italic;
+	//tr->Font->Color = gcnew Microsoft::Office::Core::ChartColorFormat::RGB(255, 0, 0);
 
 	System::String^ ts = gcnew System::String(st.c_str());
 	
@@ -66,12 +84,15 @@ System::String^ myWord::GetSelWord()
 }
 
 
-void myWord::MoveSelection(Word::WdUnits m_type, int leng, Word::WdMovementType d_type)
+void myWord::MoveSelection(Word::WdUnits m_type, int leng)
 {
 	Word::Selection ^currentSelection = dcApplication->Selection;
 	
 	//if(leng > 0)
-		currentSelection->MoveRight(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(d_type));
+	if(!MovementType)
+		currentSelection->MoveRight(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(Word::WdMovementType::wdMove));
+	else
+		currentSelection->MoveRight(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(Word::WdMovementType::wdExtend));
 	//else
 	//	currentSelection->MoveLeft(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(d_type));
 
@@ -79,7 +100,8 @@ void myWord::MoveSelection(Word::WdUnits m_type, int leng, Word::WdMovementType 
 
 void myWord::Open(System::String^ fn)
 {
-	
+	if(filename == fn)
+		return;
 	filename = fn;
 
 	Word::Application^ t_dcApplication;
