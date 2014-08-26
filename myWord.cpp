@@ -1,6 +1,7 @@
 
 
 #include "myWord.h"
+#include "UnicodeF.h"
 
 
 myWord::myWord()
@@ -40,7 +41,7 @@ void myWord::SetFontName(std::string fn)
 	FontName = gcnew System::String(fn.c_str());
 }
 
-void myWord::SetWord(std::string st)
+void myWord::SetWord(std::string st, std::string m_code)
 {
 	std::cout << dcDocument->Words->Count << std::endl;
 	Word::Selection ^currentSelection = dcApplication->Selection;
@@ -53,8 +54,15 @@ void myWord::SetWord(std::string st)
 		//System::Object ^slc = dcDocument->Words->Count;
 	
 	Word::Range ^tr = dcDocument->Range(slc,slc);
-		
-	tr->default = gcnew System::String(st.c_str());
+	
+	if(m_code == "utf-8")
+	{
+		int str_size;
+		tr->default = gcnew System::String(CUnicodeF::utf8_to_sjis(st.c_str(),&str_size));
+	}
+	else
+		tr->default = gcnew System::String(st.c_str());
+
 	tr->Font->Size = FontSize;
 	tr->Font->Name = FontName;
 	tr->Font->Bold = Bold;

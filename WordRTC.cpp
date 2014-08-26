@@ -27,27 +27,30 @@ static const char* wordrtc_spec[] =
     "lang_type",         "compile",
 	"conf.default.file_path", "NewFile",
 	"conf.default.fontsize", "16",
-	"conf.default.fontname", "ＭＳ 明朝",
+	//"conf.default.fontname", "ＭＳ 明朝",
 	"conf.default.Red", "0",
 	"conf.default.Blue", "0",
 	"conf.default.Green", "0",
 	"conf.default.Italic", "0",
 	"conf.default.Bold", "0",
+	"conf.default.Code", "shift_jis",
 	"conf.__widget__.file_path", "text",
 	"conf.__widget__.fontsize", "spin",
-	"conf.__widget__.fontname", "radio",
+	//"conf.__widget__.fontname", "radio",
 	"conf.__widget__.Red", "spin",
 	"conf.__widget__.Blue", "spin",
 	"conf.__widget__.Green", "spin",
 	"conf.__widget__.Italic", "radio",
 	"conf.__widget__.Bold", "radio",
+	"conf.__widget__.Code", "radio",
 	"conf.__constraints__.fontsize", "1<=x<=72",
-	"conf.__constraints__.fontname", "(MS UI Gothic,MS ゴシック,MS Pゴシック,MS 明朝,MS P明朝,HG ゴシック E,HGP ゴシック E,HGS ゴシック E,HG ゴシック M,HGP ゴシック M,HGS ゴシック M,HG 正楷書体-PRO,HG 丸ゴシック M-PRO,HG 教科書体,HGP 教科書体,HGS 教科書体,HG 行書体,HGP 行書体,HGS 行書体,HG 創英プレゼンス EB,HGP 創英プレゼンス EB,HGS 創英プレゼンス EB,HG 創英角ゴシック UB,HGP 創英角ゴシック UB,HGS 創英角ゴシック UB,HG 創英角ポップ体,HGP 創英角ポップ体,HGS 創英角ポップ体,HG 明朝 B,HGP 明朝 B,HGS 明朝 B,HG 明朝 E,HGP 明朝 E,HGS 明朝 E,メイリオ)",
+	//"conf.__constraints__.fontname", "(MS UI Gothic,MS ゴシック,MS Pゴシック,MS 明朝,MS P明朝,HG ゴシック E,HGP ゴシック E,HGS ゴシック E,HG ゴシック M,HGP ゴシック M,HGS ゴシック M,HG 正楷書体-PRO,HG 丸ゴシック M-PRO,HG 教科書体,HGP 教科書体,HGS 教科書体,HG 行書体,HGP 行書体,HGS 行書体,HG 創英プレゼンス EB,HGP 創英プレゼンス EB,HGS 創英プレゼンス EB,HG 創英角ゴシック UB,HGP 創英角ゴシック UB,HGS 創英角ゴシック UB,HG 創英角ポップ体,HGP 創英角ポップ体,HGS 創英角ポップ体,HG 明朝 B,HGP 明朝 B,HGS 明朝 B,HG 明朝 E,HGP 明朝 E,HGS 明朝 E,メイリオ)",
 	"conf.__constraints__.Red", "0<=x<=255",
 	"conf.__constraints__.Blue", "0<=x<=255",
 	"conf.__constraints__.Green", "0<=x<=255",
 	"conf.__constraints__.Italic", "(0,1)",
 	"conf.__constraints__.Bold", "(0,1)",
+	"conf.__constraints__.Code", "(utf-8, shift_jis)",
     ""
   };
 
@@ -141,12 +144,13 @@ RTC::ReturnCode_t WordRTC::onInitialize()
   
   bindParameter("file_path", file_path, "NewFile");
   bindParameter("fontsize", fontsize, "16");
-  bindParameter("fontname", fontname, "ＭＳ 明朝");
+  //bindParameter("fontname", fontname, "ＭＳ 明朝");
   bindParameter("Red", Red, "0");
   bindParameter("Green", Green, "0");
   bindParameter("Blue", Blue, "0");
   bindParameter("Italic", Italic, "0");
   bindParameter("Bold", Bold, "0");
+  bindParameter("Code", Code, "shift_jis");
   
   // Set service provider to Ports
   
@@ -234,12 +238,7 @@ RTC::ReturnCode_t WordRTC::onDeactivated(RTC::UniqueId ec_id)
 
 RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 {
-	if(m_wordIn.isNew())
-	{
-		m_wordIn.read();
-		const char *tmp = m_word.data;
-		myWord::Obj->SetWord(tmp);
-	}
+	
 	if(m_fontSizeIn.isNew())
 	{
 		m_fontSizeIn.read();
@@ -300,6 +299,13 @@ RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 	{
 		m_MovementTypeIn.read();
 		myWord::Obj->MovementType = m_MovementType.data;
+	}
+
+	if(m_wordIn.isNew())
+	{
+		m_wordIn.read();
+		const char *tmp = m_word.data;
+		myWord::Obj->SetWord(tmp, Code);
 	}
 
 	m_selWord.data = MarshalString(myWord::Obj->GetSelWord()).c_str();

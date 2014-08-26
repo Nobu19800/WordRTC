@@ -25,7 +25,7 @@ public:
 	void Close();
 
 	//文字列を書き込む関数
-	void SetWord(std::string st);
+	void SetWord(std::string st, std::string m_code);
 	//フォントのサイズを変更する関数
 	void SetFontSize(float fs);
 	//フォントの種類を変更する関数

@@ -333,6 +333,7 @@ class WordRTC
   int Green;
   int Italic;
   int Bold;
+  std::string Code;
 
 
  private:
