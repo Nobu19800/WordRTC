@@ -76,7 +76,7 @@ void MyModuleInit(RTC::Manager* manager)
 
 int main (int argc, char** argv)
 {
-	
+	myWord::Obj = gcnew myWord();
 
   RTC::Manager* manager;
   manager = RTC::Manager::init(argc, argv);

@@ -100,7 +100,7 @@ WordRTC::WordRTC(RTC::Manager* manager)
 
     // </rtc-template>
 {
-	myWord::Obj = gcnew myWord();
+	
 }
 
 /*!
