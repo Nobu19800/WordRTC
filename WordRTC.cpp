@@ -251,6 +251,14 @@ RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 		m_fontSizeIn.read();
 		myWord::Obj->SetFontSize(m_fontSize.data);
 	}
+
+	if(m_MovementTypeIn.isNew())
+	{
+		m_MovementTypeIn.read();
+		myWord::Obj->MovementType = m_MovementType.data;
+	}
+
+
 	if(m_fontNameIn.isNew())
 	{
 		m_fontNameIn.read();
@@ -302,11 +310,7 @@ RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 		m_BoldIn.read();
 		myWord::Obj->Bold = m_Bold.data;
 	}
-	if(m_MovementTypeIn.isNew())
-	{
-		m_MovementTypeIn.read();
-		myWord::Obj->MovementType = m_MovementType.data;
-	}
+	
 
 	if(m_wordIn.isNew())
 	{
