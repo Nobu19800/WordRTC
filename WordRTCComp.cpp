@@ -95,11 +95,7 @@ int main (int argc, char** argv)
   manager = RTC::Manager::init(argc, argv);
 
 
-  myWord::Obj = gcnew myWord();
-  std::string filePath = "";
-  coil::Properties& prop(::RTC::Manager::instance().getConfig());
-  getProperty(prop, "word.filename", filePath);
-  myWord::Obj->Open(gcnew System::String(filePath.c_str()));
+  
 
 
 
@@ -115,6 +111,14 @@ int main (int argc, char** argv)
 
   // run the manager in blocking mode
   // runManager(false) is the default.
+
+  myWord::Obj = gcnew myWord();
+  std::string filePath = "";
+  coil::Properties& prop(::RTC::Manager::instance().getConfig());
+  getProperty(prop, "word.filename", filePath);
+  myWord::Obj->Open(gcnew System::String(filePath.c_str()));
+  myWord::Obj->filename = "";
+
   manager->runManager();
 
   // If you want to run the manager in non-blocking mode, do like this
