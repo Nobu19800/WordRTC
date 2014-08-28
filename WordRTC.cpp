@@ -143,6 +143,7 @@ RTC::ReturnCode_t WordRTC::onInitialize()
 
   
   bindParameter("file_path", file_path, "NewFile");
+  
   bindParameter("fontsize", fontsize, "16");
   //bindParameter("fontname", fontname, "ＭＳ 明朝");
   bindParameter("Red", Red, "0");
@@ -188,12 +189,13 @@ void WordRTC::ConfigUpdate()
 	
 }
 
-/*
+
 RTC::ReturnCode_t WordRTC::onFinalize()
 {
+  myWord::Obj->Close();
   return RTC::RTC_OK;
 }
-*/
+
 
 /*
 RTC::ReturnCode_t WordRTC::onStartup(RTC::UniqueId ec_id)
@@ -225,20 +227,25 @@ RTC::ReturnCode_t WordRTC::onActivated(RTC::UniqueId ec_id)
 		myWord::Obj->Bold = true;
 
 	myWord::Obj->MovementType = false;
+
+	//ofs.open("test.txt");
+
   return RTC::RTC_OK;
 }
 
-/*
+
 RTC::ReturnCode_t WordRTC::onDeactivated(RTC::UniqueId ec_id)
 {
+	//ofs.close();
   return RTC::RTC_OK;
 }
-*/
+
 
 
 RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 {
 	
+
 	if(m_fontSizeIn.isNew())
 	{
 		m_fontSizeIn.read();
@@ -305,11 +312,18 @@ RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 	{
 		m_wordIn.read();
 		const char *tmp = m_word.data;
+		coil::TimeValue t1(coil::gettimeofday());
 		myWord::Obj->SetWord(tmp, Code);
+		coil::TimeValue t2(coil::gettimeofday());
+		//ofs << t2 - t1 << std::endl;
 	}
 
 	m_selWord.data = MarshalString(myWord::Obj->GetSelWord()).c_str();
 	m_selWordOut.write();
+
+	
+
+	
 
 
   return RTC::RTC_OK;

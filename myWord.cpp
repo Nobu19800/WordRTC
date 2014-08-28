@@ -21,7 +21,7 @@ myWord::myWord()
 	Italic = false;
 	Bold = false;
 
-	Open("");
+	//Open("");
 }
 
 void myWord::SetFontColor(int r, int g, int b)

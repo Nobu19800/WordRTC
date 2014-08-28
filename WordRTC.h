@@ -19,6 +19,8 @@
 #include <rtm/idl/ExtendedDataTypesSkel.h>
 #include <rtm/idl/InterfaceDataTypesSkel.h>
 
+#include <fstream>
+
 #include "myWord.h"
 
 // Service implementation headers
@@ -89,7 +91,7 @@ class WordRTC
    * 
    * 
    */
-  // virtual RTC::ReturnCode_t onFinalize();
+   virtual RTC::ReturnCode_t onFinalize();
 
   /***
    *
@@ -141,7 +143,7 @@ class WordRTC
    * 
    * 
    */
-  // virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
+   virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
 
   /***
    *
@@ -337,6 +339,7 @@ class WordRTC
 
 
  private:
+	 std::ofstream ofs;
   // <rtc-template block="private_attribute">
   
   // </rtc-template>
