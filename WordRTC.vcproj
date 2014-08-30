@@ -188,6 +188,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UnicodeF.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\WordRTC.cpp"
 				>
 			</File>
@@ -207,6 +211,10 @@
 			</File>
 			<File
 				RelativePath=".\myWord.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UnicodeF.h"
 				>
 			</File>
 			<File
