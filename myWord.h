@@ -40,6 +40,17 @@ public:
 	//文字の色を変更する関数
 	void SetFontColor(int r, int g, int b);
 
+	//背景色を変更する関数
+	void SetBackColor(int r, int g, int b);
+
+	float oCurrentCursorPositionX();
+	float oCurrentCursorPositionY();
+	void gotoStart();
+	void gotoEnd();
+	void gotoStartOfLine();
+	void gotoEndOfLine();
+
+
 	System::String^ filename;
 	Word::Application^ dcApplication;
 	Word::Documents^ dcDocuments;
@@ -48,11 +59,19 @@ public:
 	System::String^ FontName;
 	float FontSize;
 
-	int Red, Green, Blue;
+	int Char_Red, Char_Green, Char_Blue;
 
 	bool MovementType;
 	bool Italic;
 	bool Bold;
+
+	bool Underline;
+	bool Shadow;
+	bool Strikeout;
+	bool Contoured;
+	bool Emphasis;
+
+	int Back_Red, Back_Green, Back_Blue;
 
 	
 };

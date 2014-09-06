@@ -21,6 +21,8 @@
 
 #include <fstream>
 
+#include "WriterSVC_impl.h"
+
 #include "myWord.h"
 
 // Service implementation headers
@@ -276,10 +278,10 @@ class WordRTC
   /*!
    */
   InPort<RTC::TimedShort> m_wsScreenIn;
-  RTC::TimedRGBColour m_color;
+  RTC::TimedRGBColour m_Char_color;
   /*!
    */
-  InPort<RTC::TimedRGBColour> m_colorIn;
+  InPort<RTC::TimedRGBColour> m_Char_colorIn;
 
   RTC::TimedBoolean m_MovementType;
   /*!
@@ -295,6 +297,39 @@ class WordRTC
   /*!
    */
   InPort<RTC::TimedBoolean> m_BoldIn;
+
+
+  
+
+  RTC::TimedBoolean m_Underline;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_UnderlineIn;
+
+  RTC::TimedBoolean m_Shadow;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_ShadowIn;
+
+  RTC::TimedBoolean m_Strikeout;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_StrikeoutIn;
+
+  RTC::TimedBoolean m_Contoured;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_ContouredIn;
+
+  RTC::TimedBoolean m_Emphasis;
+  /*!
+   */
+  InPort<RTC::TimedBoolean> m_EmphasisIn;
+
+  RTC::TimedRGBColour m_Back_color;
+  /*!
+   */
+  InPort<RTC::TimedRGBColour> m_Back_colorIn;
   
   // </rtc-template>
 
@@ -309,6 +344,8 @@ class WordRTC
   /*!
    */
   OutPort<RTC::TimedString> m_copyWordOut;
+
+
   
   // </rtc-template>
 
@@ -316,6 +353,16 @@ class WordRTC
   // <rtc-template block="corbaport_declare">
   
   // </rtc-template>
+
+  RTC::CorbaPort m_WriterPort;
+  
+  // </rtc-template>
+
+  // Service declaration
+  // <rtc-template block="service_declare">
+  /*!
+   */
+  mWriterSVC_impl m_writer;
 
   // Service declaration
   // <rtc-template block="service_declare">
@@ -330,16 +377,28 @@ class WordRTC
   std::string file_path;
   float fontsize;
   std::string fontname;
-  int Red;
-  int Blue;
-  int Green;
+  int Char_Red;
+  int Char_Blue;
+  int Char_Green;
   int Italic;
   int Bold;
   std::string Code;
 
+  int Underline;
+  int Shadow;
+  int Strikeout;
+  int Contoured;
+  int Emphasis;
+
+  int Back_Red;
+  int Back_Green;
+  int Back_Blue;
+
 
  private:
 	 std::ofstream ofs;
+
+
   // <rtc-template block="private_attribute">
   
   // </rtc-template>

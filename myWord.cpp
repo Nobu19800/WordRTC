@@ -13,22 +13,39 @@ myWord::myWord()
 	FontName = "‚l‚r –¾’©";
 	filename = " ";
 
-	Red = 0;
-	Green = 0;
-	Blue = 0;
+	Char_Red = 0;
+	Char_Green = 0;
+	Char_Blue = 0;
 
 	MovementType = false;
 	Italic = false;
 	Bold = false;
+
+	Underline = false;
+	Shadow = false;
+	Strikeout = false;
+	Contoured = false;
+	Emphasis = false;
+
+	Back_Red = 255;
+	Back_Green = 255;
+	Back_Blue = 255;
 
 	//Open("");
 }
 
 void myWord::SetFontColor(int r, int g, int b)
 {
-	Red = r;
-	Green = g;
-	Blue = b;
+	Char_Red = r;
+	Char_Green = g;
+	Char_Blue = b;
+}
+
+void myWord::SetBackColor(int r, int g, int b)
+{
+	Back_Red = r;
+	Back_Green = g;
+	Back_Blue = b;
 }
 
 void myWord::SetFontSize(float fs)
@@ -66,7 +83,8 @@ void myWord::SetWord(std::string st, std::string m_code)
 	tr->Font->Size = FontSize;
 	tr->Font->Name = FontName;
 	tr->Font->Bold = Bold;
-	tr->Font->Italic = Italic;
+	
+	
 	//tr->Font->Color = gcnew Microsoft::Office::Core::ChartColorFormat::RGB(255, 0, 0);
 
 	System::String^ ts = gcnew System::String(st.c_str());
@@ -152,6 +170,31 @@ void myWord::Open(System::String^ fn)
 }
 
 void myWord::Close()
+{
+
+}
+
+float myWord::oCurrentCursorPositionX()
+{
+	return 0;
+}
+float myWord::oCurrentCursorPositionY()
+{
+	return 0;
+}
+void myWord::gotoStart()
+{
+
+}
+void myWord::gotoEnd()
+{
+
+}
+void myWord::gotoStartOfLine()
+{
+
+}
+void myWord::gotoEndOfLine()
 {
 
 }
