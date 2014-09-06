@@ -1,7 +1,10 @@
 
 
 #include "myWord.h"
-#include "UnicodeF.h"
+
+
+#include <locale.h>
+
 
 
 myWord::myWord()
@@ -75,7 +78,7 @@ void myWord::SetWord(std::string st, std::string m_code)
 	if(m_code == "utf-8")
 	{
 		int str_size;
-		tr->default = gcnew System::String(CUnicodeF::utf8_to_sjis(st.c_str(),&str_size));
+		tr->default = gcnew System::String(utf8_to_sjis(st.c_str(),&str_size));
 	}
 	else
 		tr->default = gcnew System::String(st.c_str());
@@ -197,4 +200,126 @@ void myWord::gotoStartOfLine()
 void myWord::gotoEndOfLine()
 {
 
+}
+
+char *myWord::utf8_to_sjis(const char *pUtf8Str, int *nBytesOut)
+{
+    int nNum, nBytes;
+
+    wchar_t *pwcWork = utf8_to_utf16be( pUtf8Str, &nNum, TRUE);
+    char *pcSjis = utf16be_to_sjis( pwcWork, &nBytes);
+    free( pwcWork);
+
+    *nBytesOut = nBytes;
+    return pcSjis;
+}
+int myWord::utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num,
+                          BOOL bCountOnly, BOOL bBigEndian)
+{
+    int nUtf8, nUcs2 = 0;
+    char cHigh, cLow;
+
+    for ( nUtf8=0; nUtf8 < nUtf8Num;) {
+        if ( ( pUtf8[nUtf8] & 0x80) == 0x00) {
+            if ( bCountOnly == FALSE) {
+                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x7f);
+            }
+            nUtf8 += 1;
+        } else if ( ( pUtf8[nUtf8] & 0xe0) == 0xc0) {
+            if ( bCountOnly == FALSE) {
+                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x1f) << 6;
+                pUcs2[nUcs2] |= ( pUtf8[nUtf8+1] & 0x3f);
+            }
+            nUtf8 += 2;
+        } else {
+            if ( bCountOnly == FALSE) {
+                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x0f) << 12;
+                pUcs2[nUcs2] |= ( pUtf8[nUtf8+1] & 0x3f) << 6;
+                pUcs2[nUcs2] |= ( pUtf8[nUtf8+2] & 0x3f);
+            }
+            nUtf8 += 3;
+        }
+
+        if ( bCountOnly == FALSE) {
+            if ( !bBigEndian) {
+                
+                cHigh = (pUcs2[nUcs2] & 0xff00) >> 8;
+                cLow = (pUcs2[nUcs2] & 0x00ff);
+                pUcs2[nUcs2] = (cLow << 8) | cHigh;
+            }
+        }
+
+        nUcs2 += 1;
+    }
+    if ( bCountOnly == FALSE) {
+        pUcs2[nUcs2] = L'\0';
+    }
+
+    return nUcs2;
+}
+
+
+
+
+char *myWord::utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut)
+{
+    char *pAnsiStr = NULL;
+    int nLen;
+
+    if (!pUcsStr) return NULL;
+
+    setlocale(LC_ALL, "Japanese");
+
+    nLen = wcslen( pUcsStr);
+
+    if ( pUcsStr[0] == 0xfeff || pUcsStr[0] == 0xfffe) {
+        pUcsStr++;
+        nLen--;
+    }
+
+    pAnsiStr = (char *)calloc((nLen+1), sizeof(wchar_t));
+    if (!pAnsiStr) return NULL;
+
+    
+    int nRet, i, nMbpos = 0;
+    char *pcMbchar = new char[MB_CUR_MAX];
+
+    for ( i=0; i < nLen; i++) {
+        nRet = wctomb( pcMbchar, pUcsStr[i]);
+        switch ( nRet) {
+        case 1:
+            pAnsiStr[nMbpos++] = pcMbchar[0];
+            break;
+
+        case 2:
+            pAnsiStr[nMbpos++] = pcMbchar[0];
+            pAnsiStr[nMbpos++] = pcMbchar[1];
+            break;
+
+        default:
+            pAnsiStr[nMbpos++] = ' ';
+            break;
+        }
+    }
+    pAnsiStr[nMbpos] = '\0';
+
+    delete [] pcMbchar;
+
+    *nBytesOut = nMbpos;
+
+    return pAnsiStr;
+}
+
+wchar_t *myWord::utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian)
+{
+    int nUtf8Num;
+    wchar_t *pUcsStr;
+
+    nUtf8Num = strlen(pUtf8Str);
+    *nNumOut = utf8_to_utf16be_sub( NULL, pUtf8Str, nUtf8Num, TRUE, bBigEndian);
+
+    pUcsStr = (wchar_t *)calloc((*nNumOut + 1), sizeof(wchar_t));
+    utf8_to_utf16be_sub( pUcsStr, pUtf8Str, nUtf8Num, FALSE, bBigEndian);
+
+    return pUcsStr;
 }

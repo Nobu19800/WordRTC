@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <windows.h>
 
 #include "MyObject.h"
 
@@ -73,6 +74,11 @@ public:
 
 	int Back_Red, Back_Green, Back_Blue;
 
+	static char* utf8_to_sjis(const char *pUtf8Str, int *nBytesOut);
+	
+	static char* utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut);
+	static int utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num, BOOL bCountOnly, BOOL bBigEndian);
+	static wchar_t* utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian);
 	
 };
 
