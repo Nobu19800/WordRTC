@@ -23,7 +23,7 @@ void MyModuleInit(RTC::Manager* manager)
   RTC::RtcBase* comp;
 
   // Create a component
-  comp = manager->createComponent("WordRTC");
+  comp = manager->createComponent("WordControl");
 
   if (comp==NULL)
   {
