@@ -14,9 +14,9 @@
 // <rtc-template block="module_spec">
 static const char* wordrtc_spec[] =
   {
-    "implementation_id", "WordRTC",
-    "type_name",         "WordRTC",
-    "description",       "WordRTComponent",
+    "implementation_id", "WordControl",
+    "type_name",         "WordControl",
+    "description",       "Word Control Component",
     "version",           "0.0.1",
     "vendor",            "Miyamoto Nobuhiko",
     "category",          "Test",
