@@ -1,3 +1,8 @@
+// -*-C++-*-
+/*!
+ * @file  myWord.h
+ *
+ */
 #ifndef MYWORD_H
 #define MYWORD_H
 
@@ -20,28 +25,55 @@ public:
 
 	static myWord^ Obj;
 
-	//Wordファイルを開く関数
+	
+	/**
+	*@brief Wordファイルを開く関数
+	*/
 	void Open(System::String^ fn);
-	//COMオブジェクトを解放する関数
+	
+	/**
+	*@brief COMオブジェクトを解放する関数
+	*/
 	void Close();
 
-	//文字列を書き込む関数
+	
+	/**
+	*@brief 文字列を書き込む関数
+	*/
 	void SetWord(std::string st, std::string m_code);
-	//フォントのサイズを変更する関数
+	
+	/**
+	*@brief フォントのサイズを変更する関数
+	*/
 	void SetFontSize(float fs);
-	//フォントの種類を変更する関数
+	
+	/**
+	*@brief フォントの種類を変更する関数
+	*/
 	void SetFontName(std::string fn);
 
-	//選択位置を変更する関数
+	
+	/**
+	*@brief 選択位置を変更する関数
+	*/
 	void MoveSelection(Word::WdUnits m_type, int leng);
 
-	//選択位置の文字列を取得する関数
+	
+	/**
+	*@brief 選択位置の文字列を取得する関数
+	*/
 	System::String^ GetSelWord();
 
-	//文字の色を変更する関数
+	
+	/**
+	*@brief 文字の色を変更する関数
+	*/
 	void SetFontColor(int r, int g, int b);
 
-	//背景色を変更する関数
+	
+	/**
+	*@brief 背景色を変更する関数
+	*/
 	void SetBackColor(int r, int g, int b);
 
 	float oCurrentCursorPositionX();

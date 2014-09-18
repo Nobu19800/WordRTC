@@ -21,9 +21,7 @@ mWriterSVC_impl::~mWriterSVC_impl()
 }
 
 
-/*
- * 現在のカーソル位置X座標取得(単位はmm)
- */
+
 CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()
 {
 	return myWord::Obj->oCurrentCursorPositionX();
@@ -34,9 +32,7 @@ CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()
   
 }
 
-/*
- * 現在のカーソル位置Y座標取得(単位はmm)
- */
+
 
 CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()
 {
@@ -48,10 +44,7 @@ CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()
   
 }
 
-/*
- * カーソルをドキュメント先頭に移動
- * sel：Trueなら移動範囲を選択
- */
+
 void mWriterSVC_impl::gotoStart(CORBA::Boolean sel)
 {
 	myWord::Obj->gotoStart();
@@ -61,10 +54,7 @@ void mWriterSVC_impl::gotoStart(CORBA::Boolean sel)
 #endif
 }
 
-/*
- * カーソルをドキュメント最後尾に移動
- * sel：Trueなら移動範囲を選択
- */
+
 void mWriterSVC_impl::gotoEnd(CORBA::Boolean sel)
 {
 	myWord::Obj->gotoEnd();
@@ -74,10 +64,7 @@ void mWriterSVC_impl::gotoEnd(CORBA::Boolean sel)
 #endif
 }
 
-/*
- * カーソルを行先頭に移動
- * sel：Trueなら移動範囲を選択
- */
+
 void mWriterSVC_impl::gotoStartOfLine(CORBA::Boolean sel)
 {
 	myWord::Obj->gotoStartOfLine();
@@ -87,10 +74,7 @@ void mWriterSVC_impl::gotoStartOfLine(CORBA::Boolean sel)
 #endif
 }
 
-/*
- * カーソルを行最後尾に移動
- * sel：Trueなら移動範囲を選択
- */
+
 void mWriterSVC_impl::gotoEndOfLine(CORBA::Boolean sel)
 {
 	myWord::Obj->gotoEndOfLine();

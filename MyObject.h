@@ -1,3 +1,8 @@
+// -*-C++-*-
+/*!
+ * @file  MyObject.h
+ *
+ */
 #ifndef MYOBJECT_H
 #define MYOBJECT_H
 
@@ -6,15 +11,24 @@
 #include <sstream>
 
 
-//セルの番号(アルファベット)を数値に変換する関数
+
+/**
+*@brief セルの番号(アルファベット)を数値に変換する関数
+*/
 int convertStrToVal(std::string m_str);
 
 
-//文字を置換する関数
+
+/**
+*@brief 文字を置換する関数
+*/
 std::string Replace( std::string String1, std::string String2, std::string String3 );
 
 
-//RTCのデータポートのツリーの各オブジェクトクラス
+
+/**
+*@brief RTCのデータポートのツリーの各オブジェクトクラス
+*/
 class TreeObject
 {
 public:
@@ -26,13 +40,22 @@ public:
 	std::vector<TreeObject*> to;
 };
 
-//System::Stringをstd::stringに変換する関数
+
+/**
+*@brief System::Stringをstd::stringに変換する関数
+*/
 std::string MarshalString ( System::String ^ s);
 
-//文字列を特定の文字で分割する関数
+
+/**
+*@brief 文字列を特定の文字で分割する関数
+*/
 std::vector<std::string> split(const std::string &str, const std::string &delim);
 
-//文字列を数値に変換する関数
+
+/**
+*@brief 文字列を数値に変換する関数
+*/
 template<typename T>
 T string2binary(const std::string& text, int base) {
     

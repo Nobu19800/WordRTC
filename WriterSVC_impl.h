@@ -19,9 +19,7 @@ class mWriterSVC_impl
    public virtual PortableServer::RefCountServantBase
 {
  private:
-   // Make sure all instances are built on the heap by making the
-   // destructor non-public
-   //virtual ~mWriterSVC_impl();
+   
 
  public:
   /*!
@@ -34,12 +32,37 @@ class mWriterSVC_impl
    virtual ~mWriterSVC_impl();
 
    // attributes and operations
+   /**
+   *@brief 現在のカーソル位置X座標取得(単位はmm)
+   */
+   
    CORBA::Float oCurrentCursorPositionX();
+   /**
+   *@brief 現在のカーソル位置Y座標取得(単位はmm)
+   */
    CORBA::Float oCurrentCursorPositionY();
+   /**
+   *@brief カーソルをドキュメント先頭に移動
+   *@param sel Trueなら移動範囲を選択
+   */
    void gotoStart(CORBA::Boolean sel);
+   /**
+   *@brief カーソルをドキュメント最後尾に移動
+   *@param sel Trueなら移動範囲を選択
+   */
+   
    void gotoEnd(CORBA::Boolean sel);
+   /**
+   *@brief カーソルを行先頭に移動
+   *@param sel Trueなら移動範囲を選択
+   */
    void gotoStartOfLine(CORBA::Boolean sel);
+   /**
+   *@brief カーソルを行最後尾に移動
+   *@param sel Trueなら移動範囲を選択
+   */
    void gotoEndOfLine(CORBA::Boolean sel);
+   
 
 };
 
