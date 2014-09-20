@@ -1,4 +1,9 @@
-
+// -*-C++-*-
+/*!
+ * @file  myWord.cpp
+ * @brief
+ *
+ */
 
 #include "myWord.h"
 

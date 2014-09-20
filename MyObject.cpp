@@ -1,3 +1,9 @@
+// -*-C++-*-
+/*!
+ * @file  MyObject.cpp
+ * @brief
+ *
+ */
 
 #include "MyObject.h"
 
