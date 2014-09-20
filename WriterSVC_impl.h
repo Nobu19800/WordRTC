@@ -34,11 +34,13 @@ class mWriterSVC_impl
    // attributes and operations
    /**
    *@brief 現在のカーソル位置X座標取得(単位はmm)
+   * @return カーソル位置X座標
    */
    
    CORBA::Float oCurrentCursorPositionX();
    /**
    *@brief 現在のカーソル位置Y座標取得(単位はmm)
+   * @return カーソル位置Y座標
    */
    CORBA::Float oCurrentCursorPositionY();
    /**

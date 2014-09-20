@@ -51,18 +51,20 @@ class WordRTC
   : public RTC::DataFlowComponentBase
 {
  public:
-  /*!
-   * @brief constructor
-   * @param manager Maneger Object
-   */
+  /**
+	*@brief コンストラクタ
+	* @param manager
+	*/
   WordRTC(RTC::Manager* manager);
 
-  /*!
-   * @brief destructor
+  /**
+   * @brief デストラクタ
    */
   ~WordRTC();
 
-  //コンフィギュレーションパラメータが更新されたときにファイルを再読み込みする関数
+  /**
+   * @brief コンフィギュレーションパラメータが更新されたときにファイルを再読み込みする関数
+   */
   void WordRTC::ConfigUpdate();
 
   // <rtc-template block="public_attribute">
@@ -73,25 +75,15 @@ class WordRTC
   
   // </rtc-template>
 
-  /***
-   *
-   * The initialize action (on CREATED->ALIVE transition)
-   * formaer rtc_init_entry() 
-   *
-   * @return RTC::ReturnCode_t
-   * 
-   * 
-   */
+  /**
+  *@brief 初期化処理用コールバック関数
+  * @return 
+  */
    virtual RTC::ReturnCode_t onInitialize();
 
-  /***
-   *
-   * The finalize action (on ALIVE->END transition)
-   * formaer rtc_exiting_entry()
-   *
-   * @return RTC::ReturnCode_t
-   * 
-   * 
+  /**
+   *@brief 終了処理のコールバック関数
+   * @return 
    */
    virtual RTC::ReturnCode_t onFinalize();
 
@@ -121,42 +113,24 @@ class WordRTC
    */
   // virtual RTC::ReturnCode_t onShutdown(RTC::UniqueId ec_id);
 
-  /***
-   *
-   * The activated action (Active state entry action)
-   * former rtc_active_entry()
-   *
-   * @param ec_id target ExecutionContext Id
-   *
-   * @return RTC::ReturnCode_t
-   * 
-   * 
+  /**
+   *@brief 活性化時のコールバック関数
+   * @param ec_id
+   * @return 
    */
    virtual RTC::ReturnCode_t onActivated(RTC::UniqueId ec_id);
 
-  /***
-   *
-   * The deactivated action (Active state exit action)
-   * former rtc_active_exit()
-   *
-   * @param ec_id target ExecutionContext Id
-   *
-   * @return RTC::ReturnCode_t
-   * 
-   * 
+  /**
+   *@brief 不活性化時のコールバック関数
+   * @param ec_id
+   * @return 
    */
    virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
 
-  /***
-   *
-   * The execution action that is invoked periodically
-   * former rtc_active_do()
-   *
-   * @param ec_id target ExecutionContext Id
-   *
-   * @return RTC::ReturnCode_t
-   * 
-   * 
+  /**
+   *@brief 周期処理用コールバック関数
+   * @param ec_id
+   * @return 
    */
    virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
 
@@ -242,108 +216,87 @@ class WordRTC
 
   // DataInPort declaration
   // <rtc-template block="inport_declare">
-  RTC::TimedString m_word;
-  /*!
-   */
-  InPort<RTC::TimedString> m_wordIn;
-  RTC::TimedFloat m_fontSize;
-  /*!
-   */
-  InPort<RTC::TimedFloat> m_fontSizeIn;
-  RTC::TimedString m_fontName;
-  /*!
-   */
-  InPort<RTC::TimedString> m_fontNameIn;
-  RTC::TimedShort m_wsCharacter;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsCharacterIn;
-  RTC::TimedShort m_wsWord;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsWordIn;
-  RTC::TimedShort m_wsLine;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsLineIn;
-  RTC::TimedShort m_wsParagraph;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsParagraphIn;
-  RTC::TimedShort m_wsWindow;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsWindowIn;
-  RTC::TimedShort m_wsScreen;
-  /*!
-   */
-  InPort<RTC::TimedShort> m_wsScreenIn;
-  RTC::TimedRGBColour m_Char_color;
-  /*!
-   */
-  InPort<RTC::TimedRGBColour> m_Char_colorIn;
+  RTC::TimedString m_word;	/**<　@brief  */
+  
+  InPort<RTC::TimedString> m_wordIn;	/**<　@brief  */
+  RTC::TimedFloat m_fontSize;	/**<　@brief  */
+ 
+  InPort<RTC::TimedFloat> m_fontSizeIn;	/**<　@brief  */
+  RTC::TimedString m_fontName;	/**<　@brief  */
+  
+  InPort<RTC::TimedString> m_fontNameIn;	/**<　@brief  */
+  RTC::TimedShort m_wsCharacter;	/**<　@brief  */
+  
+  InPort<RTC::TimedShort> m_wsCharacterIn;	/**<　@brief  */
+  RTC::TimedShort m_wsWord;	/**<　@brief  */
+  
+  InPort<RTC::TimedShort> m_wsWordIn;	/**<　@brief  */
+  RTC::TimedShort m_wsLine;	/**<　@brief  */
+  
+  InPort<RTC::TimedShort> m_wsLineIn;	/**<　@brief  */
+  RTC::TimedShort m_wsParagraph;	/**<　@brief  */
+  
+  InPort<RTC::TimedShort> m_wsParagraphIn;	/**<　@brief  */
+  RTC::TimedShort m_wsWindow;	/**<　@brief  */
+  
+  InPort<RTC::TimedShort> m_wsWindowIn;	/**<　@brief  */
+  RTC::TimedShort m_wsScreen;	/**<　@brief  */
+ 
+  InPort<RTC::TimedShort> m_wsScreenIn;	/**<　@brief  */
+  RTC::TimedRGBColour m_Char_color;	/**<　@brief  */
+  
+  InPort<RTC::TimedRGBColour> m_Char_colorIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_MovementType;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_MovementTypeIn;
+  RTC::TimedBoolean m_MovementType;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_MovementTypeIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Italic;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_ItalicIn;
+  RTC::TimedBoolean m_Italic;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_ItalicIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Bold;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_BoldIn;
+  RTC::TimedBoolean m_Bold;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_BoldIn;	/**<　@brief  */
 
 
   
 
-  RTC::TimedBoolean m_Underline;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_UnderlineIn;
+  RTC::TimedBoolean m_Underline;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_UnderlineIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Shadow;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_ShadowIn;
+  RTC::TimedBoolean m_Shadow;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_ShadowIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Strikeout;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_StrikeoutIn;
+  RTC::TimedBoolean m_Strikeout;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_StrikeoutIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Contoured;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_ContouredIn;
+  RTC::TimedBoolean m_Contoured;	/**<　@brief  */
+  
+  InPort<RTC::TimedBoolean> m_ContouredIn;	/**<　@brief  */
 
-  RTC::TimedBoolean m_Emphasis;
-  /*!
-   */
-  InPort<RTC::TimedBoolean> m_EmphasisIn;
+  RTC::TimedBoolean m_Emphasis;	/**<　@brief  */
+ 
+  InPort<RTC::TimedBoolean> m_EmphasisIn;	/**<　@brief  */
 
-  RTC::TimedRGBColour m_Back_color;
-  /*!
-   */
-  InPort<RTC::TimedRGBColour> m_Back_colorIn;
+  RTC::TimedRGBColour m_Back_color;	/**<　@brief  */
+  
+  InPort<RTC::TimedRGBColour> m_Back_colorIn;	/**<　@brief  */
   
   // </rtc-template>
 
 
   // DataOutPort declaration
   // <rtc-template block="outport_declare">
-  RTC::TimedString m_selWord;
-  /*!
-   */
+  RTC::TimedString m_selWord;	/**<　@brief  */
+  
   OutPort<RTC::TimedString> m_selWordOut;
-  RTC::TimedString m_copyWord;
-  /*!
-   */
-  OutPort<RTC::TimedString> m_copyWordOut;
+  RTC::TimedString m_copyWord;	/**<　@brief  */
+  
+  OutPort<RTC::TimedString> m_copyWordOut;	/**<　@brief  */
 
 
   
@@ -354,7 +307,7 @@ class WordRTC
   
   // </rtc-template>
 
-  RTC::CorbaPort m_WriterPort;
+  RTC::CorbaPort m_WriterPort;	/**<　@brief  */
   
   // </rtc-template>
 
@@ -362,7 +315,7 @@ class WordRTC
   // <rtc-template block="service_declare">
   /*!
    */
-  mWriterSVC_impl m_writer;
+  mWriterSVC_impl m_writer;	/**<　@brief  */
 
   // Service declaration
   // <rtc-template block="service_declare">
@@ -374,25 +327,25 @@ class WordRTC
   
   // </rtc-template>
 
-  std::string file_path;
-  float fontsize;
-  std::string fontname;
-  int Char_Red;
-  int Char_Blue;
-  int Char_Green;
-  int Italic;
-  int Bold;
-  std::string Code;
+  std::string file_path;	/**<　@brief  */
+  float fontsize;	/**<　@brief  */
+  std::string fontname;	/**<　@brief  */
+  int Char_Red;	/**<　@brief  */
+  int Char_Blue;	/**<　@brief  */
+  int Char_Green;	/**<　@brief  */
+  int Italic;	/**<　@brief  */
+  int Bold;	/**<　@brief  */
+  std::string Code;	/**<　@brief  */
 
-  int Underline;
-  int Shadow;
-  int Strikeout;
-  int Contoured;
-  int Emphasis;
+  int Underline;	/**<　@brief  */
+  int Shadow;	/**<　@brief  */
+  int Strikeout;	/**<　@brief  */
+  int Contoured;	/**<　@brief  */
+  int Emphasis;	/**<　@brief  */
 
-  int Back_Red;
-  int Back_Green;
-  int Back_Blue;
+  int Back_Red;	/**<　@brief  */
+  int Back_Green;	/**<　@brief  */
+  int Back_Blue;	/**<　@brief  */
 
 
  private:
