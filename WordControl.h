@@ -7,8 +7,8 @@
  * $Id$
  */
 
-#ifndef WORDRTC_H
-#define WORDRTC_H
+#ifndef WORDCONTROL_H
+#define WORDCONTROL_H
 
 #include <rtm/Manager.h>
 #include <rtm/DataFlowComponentBase.h>
@@ -44,11 +44,11 @@ using namespace RTC;
 
 
 /*!
- * @class WordRTC
+ * @class WordControl
  * @brief WordRTComponent
  *
  */
-class WordRTC
+class WordControl
   : public RTC::DataFlowComponentBase
 {
  public:
@@ -56,17 +56,17 @@ class WordRTC
 	*@brief コンストラクタ
 	* @param manager
 	*/
-  WordRTC(RTC::Manager* manager);
+  WordControl(RTC::Manager* manager);
 
   /**
    * @brief デストラクタ
    */
-  ~WordRTC();
+  ~WordControl();
 
   /**
    * @brief コンフィギュレーションパラメータが更新されたときにファイルを再読み込みする関数
    */
-  void WordRTC::ConfigUpdate();
+  void WordControl::ConfigUpdate();
 
   // <rtc-template block="public_attribute">
   

@@ -84,7 +84,7 @@ class MyConfigUpdateParam
     : public RTC::ConfigurationSetListener
 {
 public:
-    MyConfigUpdateParam(WordRTC *e_rtc)
+    MyConfigUpdateParam(WordControl *e_rtc)
     {
 		m_rtc = e_rtc;
     }
@@ -94,7 +94,7 @@ public:
 		m_rtc->ConfigUpdate();
 		
     }
-	WordRTC *m_rtc;
+	WordControl *m_rtc;
 
 };
 
@@ -104,7 +104,7 @@ public:
  * @brief constructor
  * @param manager Maneger Object
  */
-WordRTC::WordRTC(RTC::Manager* manager)
+WordControl::WordControl(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
     m_wordIn("word", m_word),
@@ -139,13 +139,13 @@ WordRTC::WordRTC(RTC::Manager* manager)
 /*!
  * @brief destructor
  */
-WordRTC::~WordRTC()
+WordControl::~WordControl()
 {
 }
 
 
 
-RTC::ReturnCode_t WordRTC::onInitialize()
+RTC::ReturnCode_t WordControl::onInitialize()
 {
   // Registration: InPort/OutPort/Service
   // <rtc-template block="registration">
@@ -228,7 +228,7 @@ RTC::ReturnCode_t WordRTC::onInitialize()
 }
 
 
-void WordRTC::ConfigUpdate()
+void WordControl::ConfigUpdate()
 {
 	this->m_configsets.update("default","file_path");
 	std::string sfn = Replace(file_path, "/", "\\");
@@ -250,7 +250,7 @@ void WordRTC::ConfigUpdate()
 }
 
 
-RTC::ReturnCode_t WordRTC::onFinalize()
+RTC::ReturnCode_t WordControl::onFinalize()
 {
   myWord::Obj->Close();
   return RTC::RTC_OK;
@@ -258,21 +258,21 @@ RTC::ReturnCode_t WordRTC::onFinalize()
 
 
 /*
-RTC::ReturnCode_t WordRTC::onStartup(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onStartup(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t WordRTC::onShutdown(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onShutdown(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 
-RTC::ReturnCode_t WordRTC::onActivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onActivated(RTC::UniqueId ec_id)
 {
 	myWord::Obj->SetFontSize(fontsize);
 	myWord::Obj->SetFontName(fontname);
@@ -323,7 +323,7 @@ RTC::ReturnCode_t WordRTC::onActivated(RTC::UniqueId ec_id)
 }
 
 
-RTC::ReturnCode_t WordRTC::onDeactivated(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onDeactivated(RTC::UniqueId ec_id)
 {
 	//ofs.close();
   return RTC::RTC_OK;
@@ -331,7 +331,7 @@ RTC::ReturnCode_t WordRTC::onDeactivated(RTC::UniqueId ec_id)
 
 
 
-RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onExecute(RTC::UniqueId ec_id)
 {
 	
 
@@ -461,35 +461,35 @@ RTC::ReturnCode_t WordRTC::onExecute(RTC::UniqueId ec_id)
 }
 
 /*
-RTC::ReturnCode_t WordRTC::onAborting(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onAborting(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t WordRTC::onError(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onError(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t WordRTC::onReset(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onReset(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t WordRTC::onStateUpdate(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onStateUpdate(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
 */
 
 /*
-RTC::ReturnCode_t WordRTC::onRateChanged(RTC::UniqueId ec_id)
+RTC::ReturnCode_t WordControl::onRateChanged(RTC::UniqueId ec_id)
 {
   return RTC::RTC_OK;
 }
@@ -504,8 +504,8 @@ extern "C"
   {
     coil::Properties profile(wordrtc_spec);
     manager->registerFactory(profile,
-                             RTC::Create<WordRTC>,
-                             RTC::Delete<WordRTC>);
+                             RTC::Create<WordControl>,
+                             RTC::Delete<WordControl>);
   }
   
 };
