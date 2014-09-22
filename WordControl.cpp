@@ -1,14 +1,15 @@
 ﻿// -*- C++ -*-
 /*!
- * @file  WordRTC.cpp
- * @brief WordRTComponent
+ * @file  WordControl.cpp
+ * @brief WordControlComponent
  * @date $Date$
  *
  * $Id$
  */
 
-#include "WordRTC.h"
+#include "WordControl.h"
 #include "MyObject.h"
+
 
 // Module specification
 // <rtc-template block="module_spec">
@@ -131,7 +132,8 @@ WordRTC::WordRTC(RTC::Manager* manager)
 
     // </rtc-template>
 {
-	
+	wt = new WordTask();
+	wt->activate();
 }
 
 /*!
@@ -219,6 +221,8 @@ RTC::ReturnCode_t WordRTC::onInitialize()
 
   // <rtc-template block="bind_config">
   // </rtc-template>
+
+
   
   return RTC::RTC_OK;
 }

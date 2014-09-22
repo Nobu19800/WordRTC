@@ -21,13 +21,19 @@
     <ClCompile Include="myWord.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="UnicodeF.cpp">
+    <ClCompile Include="WordTask.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="WordRTC.cpp">
+    <ClCompile Include="WriterSK.cc">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="WordRTCComp.cpp">
+    <ClCompile Include="WriterSVC_impl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="WordControl.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="WordControlComp.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,11 +44,23 @@
     <ClInclude Include="myWord.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="UnicodeF.h">
+    <ClInclude Include="WordTask.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="WordRTC.h">
+    <ClInclude Include="WriterSkel.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="WriterStub.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="WriterSVC_impl.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="WordControl.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Writer.hh" />
   </ItemGroup>
 </Project>

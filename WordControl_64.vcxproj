@@ -17,7 +17,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -45,6 +45,8 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">WordRTC</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -68,13 +70,13 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Program Files\OpenRTM-aist\1.1;C:\Program Files\OpenRTM-aist\1.1\rtm\idl;C:\Program Files\OpenRTM-aist\1.1\omniORB\4.1.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenRTM-aist\1.1;C:\Program Files (x86)\OpenRTM-aist\1.1\rtm\idl;C:\Program Files (x86)\OpenRTM-aist\1.1\omniORB\4.1.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;RTC110.lib;coil110.lib;omniORB415_rt.lib;omniDynamic415_rt.lib;omnithread34_rt.lib;ws2_32.lib;mswsock.lib</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>C:/Program Files/OpenRTM-aist/1.1/bin;C:/Program Files/OpenRTM-aist/1.1/bin/$(Configuration);C:/Program Files/OpenRTM-aist/1.1/omniORB/4.1.5/lib/x86_win32;C:/Program Files/OpenRTM-aist/1.1/omniORB/4.1.5/lib/x86_win32/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:/Program Files (x86)/OpenRTM-aist/1.1/bin;C:/Program Files (x86)/OpenRTM-aist/1.1/bin/$(Configuration);C:/Program Files (x86)/OpenRTM-aist/1.1/omniORB/4.1.5/lib/x86_win32;C:/Program Files (x86)/OpenRTM-aist/1.1/omniORB/4.1.5/lib/x86_win32/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -108,15 +110,16 @@
   <ItemGroup>
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="myWord.cpp" />
-    <ClCompile Include="WordRTC.cpp" />
-    <ClCompile Include="WordRTCComp.cpp" />
+    <ClCompile Include="WordControl.cpp" />
+    <ClCompile Include="WordTask.cpp" />
     <ClCompile Include="WriterSK.cc" />
     <ClCompile Include="WriterSVC_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="myWord.h" />
-    <ClInclude Include="WordRTC.h" />
+    <ClInclude Include="WordControl.h" />
+    <ClInclude Include="WordTask.h" />
     <ClInclude Include="WriterSkel.h" />
     <ClInclude Include="WriterStub.h" />
     <ClInclude Include="WriterSVC_impl.h" />

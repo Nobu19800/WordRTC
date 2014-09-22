@@ -1,7 +1,7 @@
 // -*- C++ -*-
 /*!
- * @file  WordRTC.h
- * @brief WordRTComponent
+ * @file  WordControl.h
+ * @brief WordControlomponent
  * @date  $Date$
  *
  * $Id$
@@ -24,6 +24,7 @@
 #include "WriterSVC_impl.h"
 
 #include "myWord.h"
+#include "WordTask.h"
 
 // Service implementation headers
 // <rtc-template block="service_impl_h">
@@ -350,6 +351,7 @@ class WordRTC
 
  private:
 	 std::ofstream ofs;
+	 WordTask *wt;
 
 
   // <rtc-template block="private_attribute">
