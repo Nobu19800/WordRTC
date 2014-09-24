@@ -367,7 +367,7 @@ class WordControl
 
 extern "C"
 {
-  DLL_EXPORT void WordRTCInit(RTC::Manager* manager);
+  DLL_EXPORT void WordControlInit(RTC::Manager* manager);
 };
 
 #endif // WORDRTC_H

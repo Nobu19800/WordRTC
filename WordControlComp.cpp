@@ -19,7 +19,7 @@
 
 void MyModuleInit(RTC::Manager* manager)
 {
-  WordRTCInit(manager);
+  WordControlInit(manager);
   RTC::RtcBase* comp;
 
   // Create a component
