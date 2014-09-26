@@ -17,18 +17,7 @@ WordTask::WordTask()
 }
 
 
-template <class T>
-void getProperty(coil::Properties& prop, const char* key, T& value)
-{
-if (prop.findNode(key) != 0)
-  {
-    T tmp;
-    if (coil::stringTo(tmp, prop[key].c_str()))
-      {
-        value = tmp;
-      }
-  }
-}
+
 
 
 int WordTask::svc()
@@ -38,8 +27,10 @@ int WordTask::svc()
 	std::string filePath = "";
 	coil::Properties& prop(::RTC::Manager::instance().getConfig());
 	getProperty(prop, "word.filename", filePath);
+	//filePath = Replace(filePath, "/", "\\");
+
 	myWord::Obj->Open(gcnew System::String(filePath.c_str()));
-	myWord::Obj->filename = "";
+	
 	return 0;
 }
 

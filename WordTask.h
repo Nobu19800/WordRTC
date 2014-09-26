@@ -40,5 +40,18 @@ public:
 
 };
 
+template <class T>
+void getProperty(coil::Properties& prop, const char* key, T& value)
+{
+if (prop.findNode(key) != 0)
+  {
+    T tmp;
+    if (coil::stringTo(tmp, prop[key].c_str()))
+      {
+        value = tmp;
+      }
+  }
+}
+
 
 #endif

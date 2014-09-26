@@ -68,6 +68,12 @@ class WordControl
    */
   void WordControl::ConfigUpdate();
 
+  /**
+   *@brief ファイル名のコンフィギュレーションパラメータ変更の関数
+   * @param FP
+   */
+   void SetFilePath(std::string FP);
+
   // <rtc-template block="public_attribute">
   
   // </rtc-template>
@@ -363,6 +369,8 @@ class WordControl
   // </rtc-template>
 
 };
+
+
 
 
 extern "C"

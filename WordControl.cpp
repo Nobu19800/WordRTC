@@ -145,6 +145,8 @@ WordControl::~WordControl()
 
 
 
+
+
 RTC::ReturnCode_t WordControl::onInitialize()
 {
   // Registration: InPort/OutPort/Service
@@ -188,7 +190,7 @@ RTC::ReturnCode_t WordControl::onInitialize()
   
   
 
-  this->addConfigurationSetListener(ON_SET_CONFIG_SET, new MyConfigUpdateParam(this));
+  
 
   
   bindParameter("file_path", file_path, "NewFile");
@@ -210,6 +212,14 @@ RTC::ReturnCode_t WordControl::onInitialize()
   bindParameter("Back_Red", Back_Red, "255");
   bindParameter("Back_Green", Back_Green, "255");
   bindParameter("Back_Blue", Back_Blue, "255");
+
+  std::string filePath = "";
+  coil::Properties& prop(::RTC::Manager::instance().getConfig());
+  getProperty(prop, "excel.filename", filePath);
+  SetFilePath(filePath);
+
+
+  this->addConfigurationSetListener(ON_SET_CONFIG_SET, new MyConfigUpdateParam(this));
   
   // Set service provider to Ports
   
@@ -225,6 +235,22 @@ RTC::ReturnCode_t WordControl::onInitialize()
 
   
   return RTC::RTC_OK;
+}
+
+
+
+void WordControl::SetFilePath(std::string FP)
+{
+
+	coil::Properties file_confSet("default");
+	file_confSet.setProperty("file_path", FP.c_str());
+	this->m_configsets.setConfigurationSetValues(file_confSet);
+	this->m_configsets.activateConfigurationSet("default");
+	
+
+
+	this->m_configsets.update("default", "file_path");
+	
 }
 
 
@@ -500,7 +526,7 @@ RTC::ReturnCode_t WordControl::onRateChanged(RTC::UniqueId ec_id)
 extern "C"
 {
  
-  void WordRTCInit(RTC::Manager* manager)
+  void WordControlInit(RTC::Manager* manager)
   {
     coil::Properties profile(wordrtc_spec);
     manager->registerFactory(profile,
