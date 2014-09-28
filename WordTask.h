@@ -1,7 +1,7 @@
 // -*- C++ -*-
 /*!
  * @file  WordTask.h
- *
+ * @brief Wordの起動、COMの参照をするスレッド
  * $Id$
  */
 
@@ -20,7 +20,7 @@
 
 /*!
  * @class WordTask
- * @brief 
+ * @brief Wordの起動、COMの参照をするスレッド
  *
  */
 class WordTask : public virtual coil::Task
@@ -28,11 +28,10 @@ class WordTask : public virtual coil::Task
 public:
 		/**
 		*@brief コンストラクタ
-		* @param manager
 		*/
 		WordTask();
 		/**
-		*@brief 
+		*@brief スレッドを実行
 		*/
 		virtual int svc();
 		

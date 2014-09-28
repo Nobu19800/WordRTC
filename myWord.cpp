@@ -1,7 +1,7 @@
 // -*-C++-*-
 /*!
  * @file  myWord.cpp
- * @brief
+ * @brief Word‚Ì‘€ì
  *
  */
 

@@ -54,7 +54,7 @@ class WordControl
  public:
   /**
 	*@brief コンストラクタ
-	* @param manager
+	* @param manager マネージャーオブジェクト
 	*/
   WordControl(RTC::Manager* manager);
 
@@ -70,7 +70,7 @@ class WordControl
 
   /**
    *@brief ファイル名のコンフィギュレーションパラメータ変更の関数
-   * @param FP
+   * @param FP ファイル名
    */
    void SetFilePath(std::string FP);
 
@@ -84,13 +84,13 @@ class WordControl
 
   /**
   *@brief 初期化処理用コールバック関数
-  * @return 
+  * @return RTC::ReturnCode_t
   */
    virtual RTC::ReturnCode_t onInitialize();
 
   /**
    *@brief 終了処理のコールバック関数
-   * @return 
+   * @return RTC::ReturnCode_t
    */
    virtual RTC::ReturnCode_t onFinalize();
 
@@ -129,15 +129,15 @@ class WordControl
 
   /**
    *@brief 不活性化時のコールバック関数
-   * @param ec_id
-   * @return 
+   * @param ec_id target ExecutionContext Id
+   * @return RTC::ReturnCode_t
    */
    virtual RTC::ReturnCode_t onDeactivated(RTC::UniqueId ec_id);
 
   /**
    *@brief 周期処理用コールバック関数
-   * @param ec_id
-   * @return 
+   * @param ec_id target ExecutionContext Id
+   * @return RTC::ReturnCode_t
    */
    virtual RTC::ReturnCode_t onExecute(RTC::UniqueId ec_id);
 

@@ -1,7 +1,7 @@
 // -*-C++-*-
 /*!
  * @file  myWord.h
- *
+ * @brief Wordの操作
  */
 #ifndef MYWORD_H
 #define MYWORD_H
@@ -34,7 +34,7 @@ public:
 	
 	/**
 	*@brief Wordファイルを開く関数
-	* @param fn
+	* @param fn ファイルパス
 	*/
 	void Open(System::String^ fn);
 	
@@ -46,53 +46,53 @@ public:
 	
 	/**
 	*@brief 文字列を書き込む関数
-	* @param st
-	* @param m_code
+	* @param st 書き込む文字列
+	* @param m_code 文字コード
 	*/
 	void SetWord(std::string st, std::string m_code);
 	
 	/**
 	*@brief フォントのサイズを変更する関数
-	* @param fs
+	* @param fs フォントサイズ
 	*/
 	void SetFontSize(float fs);
 	
 	/**
 	*@brief フォントの種類を変更する関数
-	* @param fn
+	* @param fn フォントの種類
 	*/
 	void SetFontName(std::string fn);
 
 	
 	/**
 	*@brief 選択位置を変更する関数
-	* @param m_type
-	* @param leng
+	* @param m_type 移動のタイプ
+	* @param leng 移動量
 	*/
 	void MoveSelection(Word::WdUnits m_type, int leng);
 
 	
 	/**
 	*@brief 選択位置の文字列を取得する関数
-	* @return 
+	* @return 取得した文字列
 	*/
 	System::String^ GetSelWord();
 
 	
 	/**
 	*@brief 文字の色を変更する関数
-	* @param r
-	* @param g
-	* @param b
+	* @param r 文字の色(R)
+	* @param g 文字の色(G)
+	* @param b 文字の色(B)
 	*/
 	void SetFontColor(int r, int g, int b);
 
 	
 	/**
 	*@brief 背景色を変更する関数
-	* @param r
-	* @param g
-	* @param b
+	* @param r 文字の色(R)
+	* @param g 文字の色(G)
+	* @param b 文字の色(B)
 	*/
 	void SetBackColor(int r, int g, int b);
 

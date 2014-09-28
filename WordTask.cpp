@@ -1,7 +1,7 @@
 // -*-C++-*-
 /*!
  * @file  WordTask.cpp
- * @brief
+ * @brief Wordの起動、COMの参照をするスレッド
  *
  */
 
