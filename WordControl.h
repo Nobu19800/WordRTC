@@ -1,7 +1,7 @@
 // -*- C++ -*-
 /*!
  * @file  WordControl.h
- * @brief WordControlomponent
+ * @brief WordControlComponent
  * @date  $Date$
  *
  * $Id$
