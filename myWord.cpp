@@ -15,6 +15,7 @@
 myWord::myWord()
 {
 	dcApplication = nullptr;
+	dcDocuments = nullptr;
 	dcDocument = nullptr;
 
 	FontSize = 10;
@@ -179,7 +180,17 @@ void myWord::Open(System::String^ fn)
 
 void myWord::Close()
 {
+	
 
+	if (dcDocuments != nullptr) {
+		System::Runtime::InteropServices::Marshal::ReleaseComObject(dcDocuments);
+	}
+	dcDocuments = nullptr;
+
+	if (dcDocument != nullptr) {
+		System::Runtime::InteropServices::Marshal::ReleaseComObject(dcDocument);
+	}
+	dcDocument = nullptr;
 }
 
 float myWord::oCurrentCursorPositionX()
