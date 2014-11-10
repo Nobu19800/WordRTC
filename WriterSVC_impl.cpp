@@ -6,7 +6,7 @@
  */
 
 #include "WriterSVC_impl.h"
-#include "myWord.h"
+#include "WordObject.h"
 
 
 mWriterSVC_impl::mWriterSVC_impl()
@@ -24,10 +24,10 @@ mWriterSVC_impl::~mWriterSVC_impl()
 
 CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()
 {
-	return myWord::Obj->oCurrentCursorPositionX();
+	return WordObject::Obj->oCurrentCursorPositionX();
 
 #ifndef WIN32
-  #warning "Code missing in function <CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()>"
+  #warning "code missing in function <CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()>"
 #endif
   
 }
@@ -36,10 +36,10 @@ CORBA::Float mWriterSVC_impl::oCurrentCursorPositionX()
 
 CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()
 {
-	return myWord::Obj->oCurrentCursorPositionY();
+	return WordObject::Obj->oCurrentCursorPositionY();
 
 #ifndef WIN32
-  #warning "Code missing in function <CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()>"
+  #warning "code missing in function <CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()>"
 #endif
   
 }
@@ -47,40 +47,40 @@ CORBA::Float mWriterSVC_impl::oCurrentCursorPositionY()
 
 void mWriterSVC_impl::gotoStart(CORBA::Boolean sel)
 {
-	myWord::Obj->gotoStart();
+	WordObject::Obj->gotoStart();
 
 #ifndef WIN32
-  #warning "Code missing in function <void mWriterSVC_impl::gotoStart()>"
+  #warning "code missing in function <void mWriterSVC_impl::gotoStart()>"
 #endif
 }
 
 
 void mWriterSVC_impl::gotoEnd(CORBA::Boolean sel)
 {
-	myWord::Obj->gotoEnd();
+	WordObject::Obj->gotoEnd();
 
 #ifndef WIN32
-  #warning "Code missing in function <void mWriterSVC_impl::gotoEnd()>"
+  #warning "code missing in function <void mWriterSVC_impl::gotoEnd()>"
 #endif
 }
 
 
 void mWriterSVC_impl::gotoStartOfLine(CORBA::Boolean sel)
 {
-	myWord::Obj->gotoStartOfLine();
+	WordObject::Obj->gotoStartOfLine();
 
 #ifndef WIN32
-  #warning "Code missing in function <void mWriterSVC_impl::gotoStartOfLine()>"
+  #warning "code missing in function <void mWriterSVC_impl::gotoStartOfLine()>"
 #endif
 }
 
 
 void mWriterSVC_impl::gotoEndOfLine(CORBA::Boolean sel)
 {
-	myWord::Obj->gotoEndOfLine();
+	WordObject::Obj->gotoEndOfLine();
 
 #ifndef WIN32
-  #warning "Code missing in function <void mWriterSVC_impl::gotoEndOfLine()>"
+  #warning "code missing in function <void mWriterSVC_impl::gotoEndOfLine()>"
 #endif
 }
 

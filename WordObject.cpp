@@ -1,73 +1,73 @@
 // -*-C++-*-
 /*!
- * @file  myWord.cpp
+ * @file  WordObject.cpp
  * @brief WordÇÃëÄçÏ
  *
  */
 
-#include "myWord.h"
+#include "WordObject.h"
 
 
 #include <locale.h>
 
 
 
-myWord::myWord()
+WordObject::WordObject()
 {
 	dcApplication = nullptr;
 	dcDocuments = nullptr;
 	dcDocument = nullptr;
 
-	FontSize = 10;
-	FontName = "ÇlÇr ñæí©";
+	fontSize = 10;
+	fontName = "ÇlÇr ñæí©";
 	filename = " ";
 
-	Char_Red = 0;
-	Char_Green = 0;
-	Char_Blue = 0;
+	char_Red = 0;
+	char_Green = 0;
+	char_Blue = 0;
 
-	MovementType = false;
-	Italic = false;
-	Bold = false;
+	movementType = false;
+	italic = false;
+	bold = false;
 
-	Underline = false;
-	Shadow = false;
-	Strikeout = false;
-	Contoured = false;
-	Emphasis = false;
+	underline = false;
+	shadow = false;
+	strikeout = false;
+	contoured = false;
+	emphasis = false;
 
-	Back_Red = 255;
-	Back_Green = 255;
-	Back_Blue = 255;
+	back_Red = 255;
+	back_Green = 255;
+	back_Blue = 255;
 
 	//Open("");
 }
 
-void myWord::SetFontColor(int r, int g, int b)
+void WordObject::setFontColor(int r, int g, int b)
 {
-	Char_Red = r;
-	Char_Green = g;
-	Char_Blue = b;
+	char_Red = r;
+	char_Green = g;
+	char_Blue = b;
 }
 
-void myWord::SetBackColor(int r, int g, int b)
+void WordObject::setBackColor(int r, int g, int b)
 {
-	Back_Red = r;
-	Back_Green = g;
-	Back_Blue = b;
+	back_Red = r;
+	back_Green = g;
+	back_Blue = b;
 }
 
-void myWord::SetFontSize(float fs)
+void WordObject::setFontSize(float fs)
 {
-	FontSize = fs;
+	fontSize = fs;
 }
 
-void myWord::SetFontName(std::string fn)
+void WordObject::setFontName(std::string fn)
 {
-	FontName = gcnew System::String(fn.c_str());
+	fontName = gcnew System::String(fn.c_str());
 }
 
-void myWord::SetWord(std::string st, std::string m_code)
+void WordObject::setWord(std::string st, std::string m_code)
 {
 	std::cout << dcDocument->Words->Count << std::endl;
 	Word::Selection ^currentSelection = dcApplication->Selection;
@@ -89,9 +89,9 @@ void myWord::SetWord(std::string st, std::string m_code)
 	else
 		tr->default = gcnew System::String(st.c_str());
 
-	tr->Font->Size = FontSize;
-	tr->Font->Name = FontName;
-	tr->Font->Bold = Bold;
+	tr->Font->Size = fontSize;
+	tr->Font->Name = fontName;
+	tr->Font->Bold = bold;
 	
 	
 	//tr->Font->Color = gcnew Microsoft::Office::Core::ChartColorFormat::RGB(255, 0, 0);
@@ -111,7 +111,7 @@ void myWord::SetWord(std::string st, std::string m_code)
 	
 }
 
-System::String^ myWord::GetSelWord()
+System::String^ WordObject::getSelWord()
 {
 	Word::Selection ^currentSelection = dcApplication->Selection;
 
@@ -119,12 +119,12 @@ System::String^ myWord::GetSelWord()
 }
 
 
-void myWord::MoveSelection(Word::WdUnits m_type, int leng)
+void WordObject::moveSelection(Word::WdUnits m_type, int leng)
 {
 	Word::Selection ^currentSelection = dcApplication->Selection;
 	
 	//if(leng > 0)
-	if(!MovementType)
+	if(!movementType)
 		currentSelection->MoveRight(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(Word::WdMovementType::wdMove));
 	else
 		currentSelection->MoveRight(static_cast<System::Object^>(m_type), static_cast<System::Object^>(leng) , static_cast<System::Object^>(Word::WdMovementType::wdExtend));
@@ -133,7 +133,7 @@ void myWord::MoveSelection(Word::WdUnits m_type, int leng)
 
 }
 
-void myWord::Open(System::String^ fn)
+void WordObject::Open(System::String^ fn)
 {
 	if(filename == fn)
 		return;
@@ -178,7 +178,7 @@ void myWord::Open(System::String^ fn)
 	}
 }
 
-void myWord::Close()
+void WordObject::Close()
 {
 	
 
@@ -193,32 +193,32 @@ void myWord::Close()
 	dcDocument = nullptr;
 }
 
-float myWord::oCurrentCursorPositionX()
+float WordObject::oCurrentCursorPositionX()
 {
 	return 0;
 }
-float myWord::oCurrentCursorPositionY()
+float WordObject::oCurrentCursorPositionY()
 {
 	return 0;
 }
-void myWord::gotoStart()
+void WordObject::gotoStart()
 {
 
 }
-void myWord::gotoEnd()
+void WordObject::gotoEnd()
 {
 
 }
-void myWord::gotoStartOfLine()
+void WordObject::gotoStartOfLine()
 {
 
 }
-void myWord::gotoEndOfLine()
+void WordObject::gotoEndOfLine()
 {
 
 }
 
-char *myWord::utf8_to_sjis(const char *pUtf8Str, int *nBytesOut)
+char *WordObject::utf8_to_sjis(const char *pUtf8Str, int *nBytesOut)
 {
     int nNum, nBytes;
 
@@ -229,7 +229,7 @@ char *myWord::utf8_to_sjis(const char *pUtf8Str, int *nBytesOut)
     *nBytesOut = nBytes;
     return pcSjis;
 }
-int myWord::utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num,
+int WordObject::utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num,
                           BOOL bCountOnly, BOOL bBigEndian)
 {
     int nUtf8, nUcs2 = 0;
@@ -277,7 +277,7 @@ int myWord::utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num
 
 
 
-char *myWord::utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut)
+char *WordObject::utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut)
 {
     char *pAnsiStr = NULL;
     int nLen;
@@ -326,7 +326,7 @@ char *myWord::utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut)
     return pAnsiStr;
 }
 
-wchar_t *myWord::utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian)
+wchar_t *WordObject::utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian)
 {
     int nUtf8Num;
     wchar_t *pUcsStr;

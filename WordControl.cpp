@@ -8,7 +8,7 @@
  */
 
 #include "WordControl.h"
-#include "MyObject.h"
+#include "SubFunctions.h"
 
 
 // Module specification
@@ -29,53 +29,53 @@ static const char* wordrtc_spec[] =
 	"conf.default.file_path", "NewFile",
 	"conf.default.fontsize", "16",
 	//"conf.default.fontname", "ＭＳ 明朝",
-	"conf.default.Char_Red", "0",
-	"conf.default.Char_Blue", "0",
-	"conf.default.Char_Green", "0",
-	"conf.default.Italic", "0",
-	"conf.default.Bold", "0",
-	"conf.default.Underline", "0",
-    "conf.default.Shadow", "0",
-    "conf.default.Strikeout", "0",
-    "conf.default.Contoured", "0",
-    "conf.default.Emphasis", "0",
-    "conf.default.Back_Red", "255",
-    "conf.default.Back_Blue", "255",
-    "conf.default.Back_Green", "255",
-	"conf.default.Code", "shift_jis",
+	"conf.default.char_Red", "0",
+	"conf.default.char_Blue", "0",
+	"conf.default.char_Green", "0",
+	"conf.default.italic", "0",
+	"conf.default.bold", "0",
+	"conf.default.underline", "0",
+    "conf.default.shadow", "0",
+    "conf.default.strikeout", "0",
+    "conf.default.contoured", "0",
+    "conf.default.emphasis", "0",
+    "conf.default.back_Red", "255",
+    "conf.default.back_Blue", "255",
+    "conf.default.back_Green", "255",
+	"conf.default.code", "shift_jis",
 	"conf.__widget__.file_path", "text",
 	"conf.__widget__.fontsize", "spin",
 	//"conf.__widget__.fontname", "radio",
-	"conf.__widget__.Char_Red", "spin",
-	"conf.__widget__.Char_Blue", "spin",
-	"conf.__widget__.Char_Green", "spin",
-	"conf.__widget__.Italic", "radio",
-	"conf.__widget__.Bold", "radio",
-	"conf.__widget__.Underline", "radio",
-    "conf.__widget__.Shadow", "radio",
-    "conf.__widget__.Strikeout", "radio",
-    "conf.__widget__.Contoured", "radio",
-    "conf.__widget__.Emphasis", "radio",
-    "conf.__widget__.Back_Red", "spin",
-    "conf.__widget__.Back_Blue", "spin",
-    "conf.__widget__.Back_Green", "spin",
-	"conf.__widget__.Code", "radio",
+	"conf.__widget__.char_Red", "spin",
+	"conf.__widget__.char_Blue", "spin",
+	"conf.__widget__.char_Green", "spin",
+	"conf.__widget__.italic", "radio",
+	"conf.__widget__.bold", "radio",
+	"conf.__widget__.underline", "radio",
+    "conf.__widget__.shadow", "radio",
+    "conf.__widget__.strikeout", "radio",
+    "conf.__widget__.contoured", "radio",
+    "conf.__widget__.emphasis", "radio",
+    "conf.__widget__.back_Red", "spin",
+    "conf.__widget__.back_Blue", "spin",
+    "conf.__widget__.back_Green", "spin",
+	"conf.__widget__.code", "radio",
 	"conf.__constraints__.fontsize", "1<=x<=72",
 	//"conf.__constraints__.fontname", "(MS UI Gothic,MS ゴシック,MS Pゴシック,MS 明朝,MS P明朝,HG ゴシック E,HGP ゴシック E,HGS ゴシック E,HG ゴシック M,HGP ゴシック M,HGS ゴシック M,HG 正楷書体-PRO,HG 丸ゴシック M-PRO,HG 教科書体,HGP 教科書体,HGS 教科書体,HG 行書体,HGP 行書体,HGS 行書体,HG 創英プレゼンス EB,HGP 創英プレゼンス EB,HGS 創英プレゼンス EB,HG 創英角ゴシック UB,HGP 創英角ゴシック UB,HGS 創英角ゴシック UB,HG 創英角ポップ体,HGP 創英角ポップ体,HGS 創英角ポップ体,HG 明朝 B,HGP 明朝 B,HGS 明朝 B,HG 明朝 E,HGP 明朝 E,HGS 明朝 E,メイリオ)",
-	"conf.__constraints__.Char_Red", "0<=x<=255",
-	"conf.__constraints__.Char_Blue", "0<=x<=255",
-	"conf.__constraints__.Char_Green", "0<=x<=255",
-	"conf.__constraints__.Italic", "(0,1)",
-	"conf.__constraints__.Bold", "(0,1)",
-	"conf.__constraints__.Underline", "(0,1)",
-    "conf.__constraints__.Shadow", "(0,1)",
-    "conf.__constraints__.Strikeout", "(0,1)",
-    "conf.__constraints__.Contoured", "(0,1)",
-    "conf.__constraints__.Emphasis", "(0,1)",
-    "conf.__constraints__.Back_Red", "0<=x<=255",
-    "conf.__constraints__.Back_Blue", "0<=x<=255",
-    "conf.__constraints__.Back_Green", "0<=x<=255",
-	"conf.__constraints__.Code", "(utf-8, shift_jis)",
+	"conf.__constraints__.char_Red", "0<=x<=255",
+	"conf.__constraints__.char_Blue", "0<=x<=255",
+	"conf.__constraints__.char_Green", "0<=x<=255",
+	"conf.__constraints__.italic", "(0,1)",
+	"conf.__constraints__.bold", "(0,1)",
+	"conf.__constraints__.underline", "(0,1)",
+    "conf.__constraints__.shadow", "(0,1)",
+    "conf.__constraints__.strikeout", "(0,1)",
+    "conf.__constraints__.contoured", "(0,1)",
+    "conf.__constraints__.emphasis", "(0,1)",
+    "conf.__constraints__.back_Red", "0<=x<=255",
+    "conf.__constraints__.back_Blue", "0<=x<=255",
+    "conf.__constraints__.back_Green", "0<=x<=255",
+	"conf.__constraints__.code", "(utf-8, shift_jis)",
     ""
   };
 
@@ -117,14 +117,14 @@ WordControl::WordControl(RTC::Manager* manager)
     m_wsWindowIn("wsWindow", m_wsWindow),
     m_wsScreenIn("wsScreen", m_wsScreen),
     m_Char_colorIn("Char_color", m_Char_color),
-	m_MovementTypeIn("MovementType", m_MovementType),
-	m_ItalicIn("Italic", m_Italic),
-	m_BoldIn("Bold", m_Bold),
-	m_UnderlineIn("Underline", m_Underline),
-	m_ShadowIn("Shadow", m_Shadow),
-	m_StrikeoutIn("Strikeout", m_Strikeout),
-	m_ContouredIn("Contoured", m_Contoured),
-	m_EmphasisIn("Emphasis", m_Emphasis),
+	m_MovementTypeIn("movementType", m_MovementType),
+	m_ItalicIn("italic", m_Italic),
+	m_BoldIn("bold", m_Bold),
+	m_UnderlineIn("underline", m_Underline),
+	m_ShadowIn("shadow", m_Shadow),
+	m_StrikeoutIn("strikeout", m_Strikeout),
+	m_ContouredIn("contoured", m_Contoured),
+	m_EmphasisIn("emphasis", m_Emphasis),
 	m_Back_colorIn("Back_color", m_Back_color),
     m_selWordOut("selWord", m_selWord),
     m_copyWordOut("copyWord", m_copyWord),
@@ -162,15 +162,15 @@ RTC::ReturnCode_t WordControl::onInitialize()
   addInPort("wsWindow", m_wsWindowIn);
   addInPort("wsScreen", m_wsScreenIn);
   addInPort("Char_color", m_Char_colorIn);
-  addInPort("MovementType", m_MovementTypeIn);
-  addInPort("Italic", m_ItalicIn);
-  addInPort("Bold", m_BoldIn);
-  addInPort("Underline", m_UnderlineIn);
-  addInPort("Shadow", m_ShadowIn);
-  addInPort("Strikeout", m_StrikeoutIn);
-  addInPort("Contoured", m_ContouredIn);
-  addInPort("Emphasis", m_EmphasisIn);
-  addInPort("Bold", m_BoldIn);
+  addInPort("movementType", m_MovementTypeIn);
+  addInPort("italic", m_ItalicIn);
+  addInPort("bold", m_BoldIn);
+  addInPort("underline", m_UnderlineIn);
+  addInPort("shadow", m_ShadowIn);
+  addInPort("strikeout", m_StrikeoutIn);
+  addInPort("contoured", m_ContouredIn);
+  addInPort("emphasis", m_EmphasisIn);
+  addInPort("bold", m_BoldIn);
   addInPort("Back_color", m_Back_colorIn);
 
   
@@ -197,21 +197,21 @@ RTC::ReturnCode_t WordControl::onInitialize()
   
   bindParameter("fontsize", fontsize, "16");
   //bindParameter("fontname", fontname, "ＭＳ 明朝");
-  bindParameter("Char_Red", Char_Red, "0");
-  bindParameter("Char_Green", Char_Green, "0");
-  bindParameter("Char_Blue", Char_Blue, "0");
-  bindParameter("Italic", Italic, "0");
-  bindParameter("Bold", Bold, "0");
-  bindParameter("Code", Code, "shift_jis");
+  bindParameter("char_Red", char_Red, "0");
+  bindParameter("char_Green", char_Green, "0");
+  bindParameter("char_Blue", char_Blue, "0");
+  bindParameter("italic", italic, "0");
+  bindParameter("bold", bold, "0");
+  bindParameter("code", code, "shift_jis");
 
-  bindParameter("Underline", Underline, "0");
-  bindParameter("Shadow", Shadow, "0");
-  bindParameter("Strikeout", Strikeout, "0");
-  bindParameter("Contoured", Contoured, "0");
-  bindParameter("Emphasis", Emphasis, "0");
-  bindParameter("Back_Red", Back_Red, "255");
-  bindParameter("Back_Green", Back_Green, "255");
-  bindParameter("Back_Blue", Back_Blue, "255");
+  bindParameter("underline", underline, "0");
+  bindParameter("shadow", shadow, "0");
+  bindParameter("strikeout", strikeout, "0");
+  bindParameter("contoured", contoured, "0");
+  bindParameter("emphasis", emphasis, "0");
+  bindParameter("back_Red", back_Red, "255");
+  bindParameter("back_Green", back_Green, "255");
+  bindParameter("back_Blue", back_Blue, "255");
 
   std::string filePath = "";
   coil::Properties& prop(::RTC::Manager::instance().getConfig());
@@ -263,12 +263,12 @@ void WordControl::ConfigUpdate()
 	
 	if(sfn ==  "NewFile")
 	{
-		myWord::Obj->Open("");
+		WordObject::Obj->Open("");
 	}
-	else if(myWord::Obj->filename != tfn)
+	else if(WordObject::Obj->filename != tfn)
 	{
 		
-		myWord::Obj->Open(tfn);
+		WordObject::Obj->Open(tfn);
 		 
 		
 	}
@@ -278,7 +278,7 @@ void WordControl::ConfigUpdate()
 
 RTC::ReturnCode_t WordControl::onFinalize()
 {
-  myWord::Obj->Close();
+  WordObject::Obj->Close();
   return RTC::RTC_OK;
 }
 
@@ -300,48 +300,48 @@ RTC::ReturnCode_t WordControl::onShutdown(RTC::UniqueId ec_id)
 
 RTC::ReturnCode_t WordControl::onActivated(RTC::UniqueId ec_id)
 {
-	myWord::Obj->SetFontSize(fontsize);
-	myWord::Obj->SetFontName(fontname);
-	myWord::Obj->SetFontColor(Char_Red, Char_Green, Char_Blue);
-	if(Italic == 0)
-		myWord::Obj->Italic = false;
+	WordObject::Obj->setFontSize(fontsize);
+	WordObject::Obj->setFontName(fontname);
+	WordObject::Obj->setFontColor(char_Red, char_Green, char_Blue);
+	if(italic == 0)
+		WordObject::Obj->italic = false;
 	else
-		myWord::Obj->Italic = true;
-	if(Bold == 0)
-		myWord::Obj->Bold = false;
+		WordObject::Obj->italic = true;
+	if(bold == 0)
+		WordObject::Obj->bold = false;
 	else
-		myWord::Obj->Bold = true;
+		WordObject::Obj->bold = true;
 
-	if(Underline == 0)
-		myWord::Obj->Underline = false;
+	if(underline == 0)
+		WordObject::Obj->underline = false;
 	else
-		myWord::Obj->Underline = true;
+		WordObject::Obj->underline = true;
 
-	if(Shadow == 0)
-		myWord::Obj->Shadow = false;
+	if(shadow == 0)
+		WordObject::Obj->shadow = false;
 	else
-		myWord::Obj->Shadow = true;
+		WordObject::Obj->shadow = true;
 
-	if(Strikeout == 0)
-		myWord::Obj->Strikeout = false;
+	if(strikeout == 0)
+		WordObject::Obj->strikeout = false;
 	else
-		myWord::Obj->Strikeout = true;
+		WordObject::Obj->strikeout = true;
 
-	if(Contoured == 0)
-		myWord::Obj->Contoured = false;
+	if(contoured == 0)
+		WordObject::Obj->contoured = false;
 	else
-		myWord::Obj->Contoured = true;
+		WordObject::Obj->contoured = true;
 
-	if(Emphasis == 0)
-		myWord::Obj->Emphasis = false;
+	if(emphasis == 0)
+		WordObject::Obj->emphasis = false;
 	else
-		myWord::Obj->Emphasis = true;
+		WordObject::Obj->emphasis = true;
 
-	myWord::Obj->SetBackColor(Back_Red, Back_Green, Back_Blue);
+	WordObject::Obj->setBackColor(back_Red, back_Green, back_Blue);
 
 	
 
-	myWord::Obj->MovementType = false;
+	WordObject::Obj->movementType = false;
 
 	//ofs.open("test.txt");
 
@@ -364,102 +364,102 @@ RTC::ReturnCode_t WordControl::onExecute(RTC::UniqueId ec_id)
 	if(m_fontSizeIn.isNew())
 	{
 		m_fontSizeIn.read();
-		myWord::Obj->SetFontSize(m_fontSize.data);
+		WordObject::Obj->setFontSize(m_fontSize.data);
 	}
 
 	if(m_MovementTypeIn.isNew())
 	{
 		m_MovementTypeIn.read();
-		myWord::Obj->MovementType = m_MovementType.data;
+		WordObject::Obj->movementType = m_MovementType.data;
 	}
 
 
 	if(m_fontNameIn.isNew())
 	{
 		m_fontNameIn.read();
-		myWord::Obj->SetFontName((const char*)m_fontName.data);
+		WordObject::Obj->setFontName((const char*)m_fontName.data);
 	}
 	if(m_wsCharacterIn.isNew())
 	{
 		m_wsCharacterIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdCharacter, m_wsCharacter.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdCharacter, m_wsCharacter.data);
 	}
 	if(m_wsWordIn.isNew())
 	{
 		m_wsWordIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdWord, m_wsWord.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdWord, m_wsWord.data);
 	}
 	if(m_wsLineIn.isNew())
 	{
 		m_wsLineIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdLine, m_wsLine.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdLine, m_wsLine.data);
 	}
 	if(m_wsParagraphIn.isNew())
 	{
 		m_wsParagraphIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdParagraph, m_wsParagraph.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdParagraph, m_wsParagraph.data);
 	}
 	if(m_wsWindowIn.isNew())
 	{
 		m_wsWindowIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdWindow, m_wsWindow.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdWindow, m_wsWindow.data);
 	}
 	if(m_wsScreenIn.isNew())
 	{
 		m_wsScreenIn.read();
-		myWord::Obj->MoveSelection(Word::WdUnits::wdScreen, m_wsScreen.data);
+		WordObject::Obj->moveSelection(Word::WdUnits::wdScreen, m_wsScreen.data);
 	}
 	if(m_Char_colorIn.isNew())
 	{
 		m_Char_colorIn.read();
-		myWord::Obj->SetFontColor(m_Char_color.data.r*255,m_Char_color.data.g*255,m_Char_color.data.b*255);
+		WordObject::Obj->setFontColor(m_Char_color.data.r*255,m_Char_color.data.g*255,m_Char_color.data.b*255);
 	}
 
 	if(m_ItalicIn.isNew())
 	{
 		m_ItalicIn.read();
-		myWord::Obj->Italic = m_Italic.data;
+		WordObject::Obj->italic = m_Italic.data;
 	}
 	if(m_BoldIn.isNew())
 	{
 		m_BoldIn.read();
-		myWord::Obj->Bold = m_Bold.data;
+		WordObject::Obj->bold = m_Bold.data;
 	}
 
 	if(m_UnderlineIn.isNew())
 	{
 		m_UnderlineIn.read();
-		myWord::Obj->Underline = m_Underline.data;
+		WordObject::Obj->underline = m_Underline.data;
 	}
 
 	if(m_ShadowIn.isNew())
 	{
 		m_ShadowIn.read();
-		myWord::Obj->Shadow = m_Shadow.data;
+		WordObject::Obj->shadow = m_Shadow.data;
 	}
 
 	if(m_StrikeoutIn.isNew())
 	{
 		m_StrikeoutIn.read();
-		myWord::Obj->Strikeout = m_Strikeout.data;
+		WordObject::Obj->strikeout = m_Strikeout.data;
 	}
 
 	if(m_ContouredIn.isNew())
 	{
 		m_ContouredIn.read();
-		myWord::Obj->Contoured = m_Contoured.data;
+		WordObject::Obj->contoured = m_Contoured.data;
 	}
 
 	if(m_EmphasisIn.isNew())
 	{
 		m_EmphasisIn.read();
-		myWord::Obj->Emphasis = m_Emphasis.data;
+		WordObject::Obj->emphasis = m_Emphasis.data;
 	}
 
 	if(m_Back_colorIn.isNew())
 	{
 		m_Back_colorIn.read();
-		myWord::Obj->SetBackColor(m_Back_color.data.r*255,m_Back_color.data.g*255,m_Back_color.data.b*255);
+		WordObject::Obj->setBackColor(m_Back_color.data.r*255,m_Back_color.data.g*255,m_Back_color.data.b*255);
 	}
 
 	
@@ -470,12 +470,12 @@ RTC::ReturnCode_t WordControl::onExecute(RTC::UniqueId ec_id)
 		m_wordIn.read();
 		const char *tmp = m_word.data;
 		coil::TimeValue t1(coil::gettimeofday());
-		myWord::Obj->SetWord(tmp, Code);
+		WordObject::Obj->setWord(tmp, code);
 		coil::TimeValue t2(coil::gettimeofday());
 		//ofs << t2 - t1 << std::endl;
 	}
 
-	m_selWord.data = MarshalString(myWord::Obj->GetSelWord()).c_str();
+	m_selWord.data = MarshalString(WordObject::Obj->getSelWord()).c_str();
 	m_selWordOut.write();
 
 	

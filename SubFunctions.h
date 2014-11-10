@@ -1,10 +1,10 @@
 // -*-C++-*-
 /*!
- * @file  MyObject.h
+ * @file  SubFunctions.h
  * @brief •¶š—ñ‚Ì‘€ì“™
  */
-#ifndef MYOBJECT_H
-#define MYOBJECT_H
+#ifndef SubFunctions_H
+#define SubFunctions_H
 
 #include <vector>
 #include <string>

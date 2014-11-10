@@ -107,18 +107,18 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyObject.cpp" />
-    <ClCompile Include="myWord.cpp" />
+    <ClCompile Include="SubFunction.cpp" />
     <ClCompile Include="WordControl.cpp" />
     <ClCompile Include="WordControlComp.cpp" />
+    <ClCompile Include="WordObject.cpp" />
     <ClCompile Include="WordTask.cpp" />
     <ClCompile Include="WriterSK.cc" />
     <ClCompile Include="WriterSVC_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyObject.h" />
-    <ClInclude Include="myWord.h" />
+    <ClInclude Include="SubFunction.h" />
     <ClInclude Include="WordControl.h" />
+    <ClInclude Include="WordObject.h" />
     <ClInclude Include="WordTask.h" />
     <ClInclude Include="WriterSkel.h" />
     <ClInclude Include="WriterStub.h" />

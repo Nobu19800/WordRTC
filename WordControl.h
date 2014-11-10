@@ -23,7 +23,7 @@
 
 #include "WriterSVC_impl.h"
 
-#include "myWord.h"
+#include "WordObject.h"
 #include "WordTask.h"
 
 // Service implementation headers
@@ -337,22 +337,22 @@ class WordControl
   std::string file_path;	/**<　@brief  */
   float fontsize;	/**<　@brief  */
   std::string fontname;	/**<　@brief  */
-  int Char_Red;	/**<　@brief  */
-  int Char_Blue;	/**<　@brief  */
-  int Char_Green;	/**<　@brief  */
-  int Italic;	/**<　@brief  */
-  int Bold;	/**<　@brief  */
-  std::string Code;	/**<　@brief  */
+  int char_Red;	/**<　@brief  */
+  int char_Blue;	/**<　@brief  */
+  int char_Green;	/**<　@brief  */
+  int italic;	/**<　@brief  */
+  int bold;	/**<　@brief  */
+  std::string code;	/**<　@brief  */
 
-  int Underline;	/**<　@brief  */
-  int Shadow;	/**<　@brief  */
-  int Strikeout;	/**<　@brief  */
-  int Contoured;	/**<　@brief  */
-  int Emphasis;	/**<　@brief  */
+  int underline;	/**<　@brief  */
+  int shadow;	/**<　@brief  */
+  int strikeout;	/**<　@brief  */
+  int contoured;	/**<　@brief  */
+  int emphasis;	/**<　@brief  */
 
-  int Back_Red;	/**<　@brief  */
-  int Back_Green;	/**<　@brief  */
-  int Back_Blue;	/**<　@brief  */
+  int back_Red;	/**<　@brief  */
+  int back_Green;	/**<　@brief  */
+  int back_Blue;	/**<　@brief  */
 
 
  private:

@@ -1,10 +1,10 @@
 // -*-C++-*-
 /*!
- * @file  myWord.h
+ * @file  WordObject.h
  * @brief Wordの操作
  */
-#ifndef MYWORD_H
-#define MYWORD_H
+#ifndef WordObject_H
+#define WordObject_H
 
 //using namespace Microsoft::Office::Interop::Word;
 #define Word   Microsoft::Office::Interop::Word
@@ -14,22 +14,22 @@
 #include <vector>
 #include <windows.h>
 
-#include "MyObject.h"
+#include "SubFunctions.h"
 
 
 /**
- * @class myWord
+ * @class WordObject
 *@brief Wordを操作するクラス
 */
-ref class myWord
+ref class WordObject
 {
 public:
 	/**
 	*@brief コンストラクタ
 	*/
-	myWord();
+	WordObject();
 
-	static myWord^ Obj; /**<　@brief  */
+	static WordObject^ Obj; /**<　@brief  */
 
 	
 	/**
@@ -49,19 +49,19 @@ public:
 	* @param st 書き込む文字列
 	* @param m_code 文字コード
 	*/
-	void SetWord(std::string st, std::string m_code);
+	void setWord(std::string st, std::string m_code);
 	
 	/**
 	*@brief フォントのサイズを変更する関数
 	* @param fs フォントサイズ
 	*/
-	void SetFontSize(float fs);
+	void setFontSize(float fs);
 	
 	/**
 	*@brief フォントの種類を変更する関数
 	* @param fn フォントの種類
 	*/
-	void SetFontName(std::string fn);
+	void setFontName(std::string fn);
 
 	
 	/**
@@ -69,14 +69,14 @@ public:
 	* @param m_type 移動のタイプ
 	* @param leng 移動量
 	*/
-	void MoveSelection(Word::WdUnits m_type, int leng);
+	void moveSelection(Word::WdUnits m_type, int leng);
 
 	
 	/**
 	*@brief 選択位置の文字列を取得する関数
 	* @return 取得した文字列
 	*/
-	System::String^ GetSelWord();
+	System::String^ getSelWord();
 
 	
 	/**
@@ -85,7 +85,7 @@ public:
 	* @param g 文字の色(G)
 	* @param b 文字の色(B)
 	*/
-	void SetFontColor(int r, int g, int b);
+	void setFontColor(int r, int g, int b);
 
 	
 	/**
@@ -94,7 +94,7 @@ public:
 	* @param g 文字の色(G)
 	* @param b 文字の色(B)
 	*/
-	void SetBackColor(int r, int g, int b);
+	void setBackColor(int r, int g, int b);
 
 	/**
 	*@brief カーソル位置のX座標取得(単位はmm)
@@ -129,22 +129,22 @@ public:
 	Word::Documents^ dcDocuments; /**<　@brief  */
 	Word::Document^ dcDocument; /**<　@brief  */
 
-	System::String^ FontName; /**<　@brief  */
-	float FontSize; /**<　@brief  */
+	System::String^ fontName; /**<　@brief  */
+	float fontSize; /**<　@brief  */
 
-	int Char_Red, Char_Green, Char_Blue; /**<　@brief  */
+	int char_Red, char_Green, char_Blue; /**<　@brief  */
 
-	bool MovementType; /**<　@brief  */
-	bool Italic; /**<　@brief  */
-	bool Bold; /**<　@brief  */
+	bool movementType; /**<　@brief  */
+	bool italic; /**<　@brief  */
+	bool bold; /**<　@brief  */
 
-	bool Underline; /**<　@brief  */
-	bool Shadow; /**<　@brief  */
-	bool Strikeout; /**<　@brief  */
-	bool Contoured; /**<　@brief  */
-	bool Emphasis; /**<　@brief  */
+	bool underline; /**<　@brief  */
+	bool shadow; /**<　@brief  */
+	bool strikeout; /**<　@brief  */
+	bool contoured; /**<　@brief  */
+	bool emphasis; /**<　@brief  */
 
-	int Back_Red, Back_Green, Back_Blue; /**<　@brief  */
+	int back_Red, back_Green, back_Blue; /**<　@brief  */
 
 	/**
 	*@brief
