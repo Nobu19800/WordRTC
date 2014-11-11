@@ -79,24 +79,7 @@ static const char* wordrtc_spec[] =
     ""
   };
 
-//コンフィギュレーションパラメータが更新されたときのコールバック
-class MyConfigUpdateParam
-    : public RTC::ConfigurationSetListener
-{
-public:
-    MyConfigUpdateParam(WordControl *e_rtc)
-    {
-		m_rtc = e_rtc;
-    }
-    void operator()(const coil::Properties& config_set)
-	{
-		
-		m_rtc->ConfigUpdate();
-		
-    }
-	WordControl *m_rtc;
 
-};
 
 // </rtc-template>
 
@@ -219,7 +202,7 @@ RTC::ReturnCode_t WordControl::onInitialize()
   SetFilePath(filePath);
 
 
-  this->addConfigurationSetListener(ON_SET_CONFIG_SET, new MyConfigUpdateParam(this));
+  this->addConfigurationSetListener(ON_SET_CONFIG_SET, new WordConfigUpdateParam(this));
   
   // Set service provider to Ports
   

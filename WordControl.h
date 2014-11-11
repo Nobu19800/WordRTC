@@ -370,7 +370,24 @@ class WordControl
 
 };
 
+//コンフィギュレーションパラメータが更新されたときのコールバック
+class WordConfigUpdateParam
+    : public RTC::ConfigurationSetListener
+{
+public:
+    WordConfigUpdateParam(WordControl *e_rtc)
+    {
+		m_rtc = e_rtc;
+    }
+    void operator()(const coil::Properties& config_set)
+	{
+		
+		m_rtc->ConfigUpdate();
+		
+    }
+	WordControl *m_rtc;
 
+};
 
 
 extern "C"
