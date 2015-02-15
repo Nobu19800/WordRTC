@@ -8,7 +8,7 @@
  */
 
 #include "WordControl.h"
-#include "SubFunctions.h"
+#include "SubFunction.h"
 
 
 // Module specification
@@ -240,7 +240,9 @@ void WordControl::SetFilePath(std::string FP)
 void WordControl::ConfigUpdate()
 {
 	this->m_configsets.update("default","file_path");
-	std::string sfn = Replace(file_path, "/", "\\");
+	std::string sfn = file_path;
+	coil::replaceString(sfn, "/", "\\");
+	//std::cout << sfn << std::endl;
 	System::String ^tfn = gcnew System::String(sfn.c_str());
 	//System::Console::WriteLine(tfn);
 	
@@ -452,9 +454,9 @@ RTC::ReturnCode_t WordControl::onExecute(RTC::UniqueId ec_id)
 	{
 		m_wordIn.read();
 		const char *tmp = m_word.data;
-		coil::TimeValue t1(coil::gettimeofday());
+		//coil::TimeValue t1(coil::gettimeofday());
 		WordObject::Obj->setWord(tmp, code);
-		coil::TimeValue t2(coil::gettimeofday());
+		//coil::TimeValue t2(coil::gettimeofday());
 		//ofs << t2 - t1 << std::endl;
 	}
 
