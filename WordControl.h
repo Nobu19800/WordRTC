@@ -39,7 +39,8 @@
 using namespace RTC;
 
 
-
+class WordTask;
+class WordControl;
 
 
 
@@ -206,7 +207,7 @@ class WordControl
    */
   // virtual RTC::ReturnCode_t onRateChanged(RTC::UniqueId ec_id);
 
-
+   std::string getFileName();
  protected:
   // <rtc-template block="protected_attribute">
   

@@ -20,7 +20,7 @@ static const char* wordrtc_spec[] =
     "description",       "Word Control Component",
     "version",           "0.0.1",
     "vendor",            "Miyamoto Nobuhiko",
-    "category",          "Test",
+    "category",          "Office",
     "activity_type",     "PERIODIC",
     "kind",              "DataFlowComponent",
     "max_instance",      "1",
@@ -115,8 +115,7 @@ WordControl::WordControl(RTC::Manager* manager)
 
     // </rtc-template>
 {
-	wt = new WordTask();
-	wt->activate();
+	
 }
 
 /*!
@@ -127,7 +126,11 @@ WordControl::~WordControl()
 }
 
 
+std::string WordControl::getFileName()
+{
 
+	return file_path;
+}
 
 
 RTC::ReturnCode_t WordControl::onInitialize()
@@ -196,10 +199,15 @@ RTC::ReturnCode_t WordControl::onInitialize()
   bindParameter("back_Green", back_Green, "255");
   bindParameter("back_Blue", back_Blue, "255");
 
-  std::string filePath = "";
+
+  this->m_configsets.update("default", "file_path");
+  wt = new WordTask(this);
+  wt->activate();
+
+  /*std::string filePath = "";
   coil::Properties& prop(::RTC::Manager::instance().getConfig());
   getProperty(prop, "excel.filename", filePath);
-  SetFilePath(filePath);
+  SetFilePath(filePath);*/
 
 
   this->addConfigurationSetListener(ON_SET_CONFIG_SET, new WordConfigUpdateParam(this));

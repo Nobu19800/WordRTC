@@ -16,7 +16,9 @@
 #include <rtm/Manager.h>
 #include <rtm/PeriodicExecutionContext.h>
 
+#include "WordControl.h"
 
+class WordControl;
 
 /*!
  * @class WordTask
@@ -29,11 +31,12 @@ public:
 		/**
 		*@brief コンストラクタ
 		*/
-		WordTask();
+		WordTask(WordControl *mrtc);
 		/**
 		*@brief スレッドを実行
 		*/
 		virtual int svc();
+		WordControl *mrtc;
 		
 
 
