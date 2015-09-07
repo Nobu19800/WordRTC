@@ -15,6 +15,7 @@
 #include <windows.h>
 
 #include "SubFunction.h"
+#include "UnicodeF.h"
 
 
 /**
@@ -97,29 +98,29 @@ public:
 	void setBackColor(int r, int g, int b);
 
 	/**
-	*@brief カーソル位置のX座標取得(単位はmm)
+	*@brief カーソル位置のX座標取得(単位はmm)※未実装
 	* @return カーソル位置のX座標
 	*/
 	float oCurrentCursorPositionX();
 	/**
-	*@brief カーソル位置のY座標取得(単位はmm)
+	*@brief カーソル位置のY座標取得(単位はmm)※未実装
 	* @return カーソル位置のX座標
 	*/
 	float oCurrentCursorPositionY();
 	/**
-	*@brief カーソルをドキュメント先頭へ移動
+	*@brief カーソルをドキュメント先頭へ移動※未実装
 	*/
 	void gotoStart();
 	/**
-	*@brief カーソルをドキュメント最後尾へ移動
+	*@brief カーソルをドキュメント最後尾へ移動※未実装
 	*/
 	void gotoEnd();
 	/**
-	*@brief カーソルを行先頭へ移動
+	*@brief カーソルを行先頭へ移動※未実装
 	*/
 	void gotoStartOfLine();
 	/**
-	*@brief カーソルを行最後尾へ移動
+	*@brief カーソルを行最後尾へ移動※未実装
 	*/
 	void gotoEndOfLine();
 
@@ -146,41 +147,6 @@ public:
 
 	int back_Red, back_Green, back_Blue; /**<　@brief  */
 
-	/**
-	*@brief
-	* @param pUtf8Str
-	* @param nBytesOut
-	* @return 
-	*/
-	static char* utf8_to_sjis(const char *pUtf8Str, int *nBytesOut);
-	
-	/**
-	*@brief
-	* @param pUcsStr
-	* @param nBytesOut
-	* @return 
-	*/
-	static char* utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut);
-
-	/**
-	*@brief
-	* @param pUcs2
-	* @param pUtf8
-	* @param nUtf8Num
-	* @param bCountOnly
-	* @param bBigEndian
-	* @return 
-	*/
-	static int utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num, BOOL bCountOnly, BOOL bBigEndian);
-
-	/**
-	*@brief
-	* @param pUtf8Str
-	* @param nNumOut
-	* @param bBigEndian
-	* @return 
-	*/
-	static wchar_t* utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian);
 	
 };
 

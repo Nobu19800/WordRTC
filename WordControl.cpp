@@ -83,10 +83,10 @@ static const char* wordrtc_spec[] =
 
 // </rtc-template>
 
-/*!
- * @brief constructor
- * @param manager Maneger Object
- */
+/**
+*@brief WordRTComponentのコンストラクタ
+* @param manager マネージャーオブジェクト
+*/
 WordControl::WordControl(RTC::Manager* manager)
     // <rtc-template block="initializer">
   : RTC::DataFlowComponentBase(manager),
@@ -119,20 +119,26 @@ WordControl::WordControl(RTC::Manager* manager)
 }
 
 /*!
- * @brief destructor
+ * @brief WordRTComponentのデストラクタ
  */
 WordControl::~WordControl()
 {
 }
 
-
+/**
+*@brief ファイル名取得
+* @return ファイル名
+*/
 std::string WordControl::getFileName()
 {
 
 	return file_path;
 }
 
-
+/**
+*@brief 初期化処理用コールバック関数
+* @return RTC::ReturnCode_t
+*/
 RTC::ReturnCode_t WordControl::onInitialize()
 {
   // Registration: InPort/OutPort/Service
@@ -229,7 +235,10 @@ RTC::ReturnCode_t WordControl::onInitialize()
 }
 
 
-
+/**
+*@brief ファイル名のコンフィギュレーションパラメータ変更の関数
+* @param FP ファイル名
+*/
 void WordControl::SetFilePath(std::string FP)
 {
 
@@ -244,7 +253,9 @@ void WordControl::SetFilePath(std::string FP)
 	
 }
 
-
+/**
+* @brief コンフィギュレーションパラメータが更新されたときにファイルを再読み込みする関数
+*/
 void WordControl::ConfigUpdate()
 {
 	this->m_configsets.update("default","file_path");
@@ -268,7 +279,10 @@ void WordControl::ConfigUpdate()
 	
 }
 
-
+/**
+*@brief 終了処理のコールバック関数
+* @return RTC::ReturnCode_t
+*/
 RTC::ReturnCode_t WordControl::onFinalize()
 {
   WordObject::Obj->Close();
@@ -290,7 +304,11 @@ RTC::ReturnCode_t WordControl::onShutdown(RTC::UniqueId ec_id)
 }
 */
 
-
+/**
+*@brief 活性化時のコールバック関数
+* @param ec_id
+* @return
+*/
 RTC::ReturnCode_t WordControl::onActivated(RTC::UniqueId ec_id)
 {
 	WordObject::Obj->setFontSize(fontsize);
@@ -341,7 +359,11 @@ RTC::ReturnCode_t WordControl::onActivated(RTC::UniqueId ec_id)
   return RTC::RTC_OK;
 }
 
-
+/**
+*@brief 不活性化時のコールバック関数
+* @param ec_id target ExecutionContext Id
+* @return RTC::ReturnCode_t
+*/
 RTC::ReturnCode_t WordControl::onDeactivated(RTC::UniqueId ec_id)
 {
 	//ofs.close();
@@ -349,7 +371,11 @@ RTC::ReturnCode_t WordControl::onDeactivated(RTC::UniqueId ec_id)
 }
 
 
-
+/**
+*@brief 周期処理用コールバック関数
+* @param ec_id target ExecutionContext Id
+* @return RTC::ReturnCode_t
+*/
 RTC::ReturnCode_t WordControl::onExecute(RTC::UniqueId ec_id)
 {
 	

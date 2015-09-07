@@ -16,7 +16,10 @@
 
 
 
-
+/**
+*@brief RTC初期化
+* @param manager マネージャオブジェクト
+*/
 void MyModuleInit(RTC::Manager* manager)
 {
   WordControlInit(manager);
@@ -37,7 +40,12 @@ void MyModuleInit(RTC::Manager* manager)
 }
 
 
-
+/**
+*@brief メイン関数
+* @param argc コマンドライン引数の数
+* @param argv コマンドライン引数
+* @return 0
+*/
 int main (int argc, char** argv)
 {
 	

@@ -205,8 +205,12 @@ class WordControl
    * 
    * 
    */
-  // virtual RTC::ReturnCode_t onRateChanged(RTC::UniqueId ec_id);
+  // virtual RTC::ReturnCode_t onRateChanged(RTC::UniqueId ec_id
 
+   /**
+   *@brief ファイル名取得
+   * @return ファイル名
+   */
    std::string getFileName();
  protected:
   // <rtc-template block="protected_attribute">

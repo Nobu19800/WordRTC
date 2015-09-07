@@ -11,7 +11,9 @@
 #include <locale.h>
 
 
-
+/**
+*@brief Wordを操作するクラスのコンストラクタ
+*/
 WordObject::WordObject()
 {
 	dcApplication = nullptr;
@@ -43,6 +45,12 @@ WordObject::WordObject()
 	//Open("");
 }
 
+/**
+*@brief 文字の色を変更する関数
+* @param r 文字の色(R)
+* @param g 文字の色(G)
+* @param b 文字の色(B)
+*/
 void WordObject::setFontColor(int r, int g, int b)
 {
 	char_Red = r;
@@ -50,6 +58,12 @@ void WordObject::setFontColor(int r, int g, int b)
 	char_Blue = b;
 }
 
+/**
+*@brief 背景色を変更する関数
+* @param r 文字の色(R)
+* @param g 文字の色(G)
+* @param b 文字の色(B)
+*/
 void WordObject::setBackColor(int r, int g, int b)
 {
 	back_Red = r;
@@ -57,16 +71,29 @@ void WordObject::setBackColor(int r, int g, int b)
 	back_Blue = b;
 }
 
+/**
+*@brief フォントのサイズを変更する関数
+* @param fs フォントサイズ
+*/
 void WordObject::setFontSize(float fs)
 {
 	fontSize = fs;
 }
 
+/**
+*@brief フォントの種類を変更する関数
+* @param fn フォントの種類
+*/
 void WordObject::setFontName(std::string fn)
 {
 	fontName = gcnew System::String(fn.c_str());
 }
 
+/**
+*@brief 文字列を書き込む関数
+* @param st 書き込む文字列
+* @param m_code 文字コード
+*/
 void WordObject::setWord(std::string st, std::string m_code)
 {
 	std::cout << dcDocument->Words->Count << std::endl;
@@ -84,7 +111,7 @@ void WordObject::setWord(std::string st, std::string m_code)
 	if(m_code == "utf-8")
 	{
 		int str_size;
-		tr->default = gcnew System::String(utf8_to_sjis(st.c_str(),&str_size));
+		tr->default = gcnew System::String(CUnicodeF::utf8_to_sjis(st.c_str(), &str_size));
 	}
 	else
 		tr->default = gcnew System::String(st.c_str());
@@ -111,6 +138,10 @@ void WordObject::setWord(std::string st, std::string m_code)
 	
 }
 
+/**
+*@brief 選択位置の文字列を取得する関数
+* @return 取得した文字列
+*/
 System::String^ WordObject::getSelWord()
 {
 	Word::Selection ^currentSelection = dcApplication->Selection;
@@ -118,7 +149,11 @@ System::String^ WordObject::getSelWord()
 	return currentSelection->default;
 }
 
-
+/**
+*@brief 選択位置を変更する関数
+* @param m_type 移動のタイプ
+* @param leng 移動量
+*/
 void WordObject::moveSelection(Word::WdUnits m_type, int leng)
 {
 	Word::Selection ^currentSelection = dcApplication->Selection;
@@ -133,6 +168,10 @@ void WordObject::moveSelection(Word::WdUnits m_type, int leng)
 
 }
 
+/**
+*@brief Wordファイルを開く関数
+* @param fn ファイルパス
+*/
 void WordObject::Open(System::String^ fn)
 {
 	if(filename == fn)
@@ -178,6 +217,9 @@ void WordObject::Open(System::String^ fn)
 	}
 }
 
+/**
+*@brief COMオブジェクトを解放する関数
+*/
 void WordObject::Close()
 {
 	
@@ -193,149 +235,54 @@ void WordObject::Close()
 	dcDocument = nullptr;
 }
 
+/**
+*@brief カーソル位置のX座標取得(単位はmm)※未実装
+* @return カーソル位置のX座標
+*/
 float WordObject::oCurrentCursorPositionX()
 {
 	return 0;
 }
+
+/**
+*@brief カーソル位置のY座標取得(単位はmm)※未実装
+* @return カーソル位置のX座標
+*/
 float WordObject::oCurrentCursorPositionY()
 {
 	return 0;
 }
+
+/**
+*@brief カーソルをドキュメント先頭へ移動※未実装
+*/
 void WordObject::gotoStart()
 {
 
 }
+
+/**
+*@brief カーソルをドキュメント最後尾へ移動※未実装
+*/
 void WordObject::gotoEnd()
 {
 
 }
+
+/**
+*@brief カーソルを行先頭へ移動※未実装
+*/
 void WordObject::gotoStartOfLine()
 {
 
 }
+
+/**
+*@brief カーソルを行最後尾へ移動※未実装
+*/
 void WordObject::gotoEndOfLine()
 {
 
 }
 
-char *WordObject::utf8_to_sjis(const char *pUtf8Str, int *nBytesOut)
-{
-    int nNum, nBytes;
 
-    wchar_t *pwcWork = utf8_to_utf16be( pUtf8Str, &nNum, TRUE);
-    char *pcSjis = utf16be_to_sjis( pwcWork, &nBytes);
-    free( pwcWork);
-
-    *nBytesOut = nBytes;
-    return pcSjis;
-}
-int WordObject::utf8_to_utf16be_sub( wchar_t *pUcs2, const char *pUtf8, int nUtf8Num,
-                          BOOL bCountOnly, BOOL bBigEndian)
-{
-    int nUtf8, nUcs2 = 0;
-    char cHigh, cLow;
-
-    for ( nUtf8=0; nUtf8 < nUtf8Num;) {
-        if ( ( pUtf8[nUtf8] & 0x80) == 0x00) {
-            if ( bCountOnly == FALSE) {
-                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x7f);
-            }
-            nUtf8 += 1;
-        } else if ( ( pUtf8[nUtf8] & 0xe0) == 0xc0) {
-            if ( bCountOnly == FALSE) {
-                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x1f) << 6;
-                pUcs2[nUcs2] |= ( pUtf8[nUtf8+1] & 0x3f);
-            }
-            nUtf8 += 2;
-        } else {
-            if ( bCountOnly == FALSE) {
-                pUcs2[nUcs2] = ( pUtf8[nUtf8] & 0x0f) << 12;
-                pUcs2[nUcs2] |= ( pUtf8[nUtf8+1] & 0x3f) << 6;
-                pUcs2[nUcs2] |= ( pUtf8[nUtf8+2] & 0x3f);
-            }
-            nUtf8 += 3;
-        }
-
-        if ( bCountOnly == FALSE) {
-            if ( !bBigEndian) {
-                
-                cHigh = (pUcs2[nUcs2] & 0xff00) >> 8;
-                cLow = (pUcs2[nUcs2] & 0x00ff);
-                pUcs2[nUcs2] = (cLow << 8) | cHigh;
-            }
-        }
-
-        nUcs2 += 1;
-    }
-    if ( bCountOnly == FALSE) {
-        pUcs2[nUcs2] = L'\0';
-    }
-
-    return nUcs2;
-}
-
-
-
-
-char *WordObject::utf16be_to_sjis(const wchar_t *pUcsStr, int *nBytesOut)
-{
-    char *pAnsiStr = NULL;
-    int nLen;
-
-    if (!pUcsStr) return NULL;
-
-    setlocale(LC_ALL, "Japanese");
-
-    nLen = wcslen( pUcsStr);
-
-    if ( pUcsStr[0] == 0xfeff || pUcsStr[0] == 0xfffe) {
-        pUcsStr++;
-        nLen--;
-    }
-
-    pAnsiStr = (char *)calloc((nLen+1), sizeof(wchar_t));
-    if (!pAnsiStr) return NULL;
-
-    
-    int nRet, i, nMbpos = 0;
-    char *pcMbchar = new char[MB_CUR_MAX];
-
-    for ( i=0; i < nLen; i++) {
-        nRet = wctomb( pcMbchar, pUcsStr[i]);
-        switch ( nRet) {
-        case 1:
-            pAnsiStr[nMbpos++] = pcMbchar[0];
-            break;
-
-        case 2:
-            pAnsiStr[nMbpos++] = pcMbchar[0];
-            pAnsiStr[nMbpos++] = pcMbchar[1];
-            break;
-
-        default:
-            pAnsiStr[nMbpos++] = ' ';
-            break;
-        }
-    }
-    pAnsiStr[nMbpos] = '\0';
-
-    delete [] pcMbchar;
-
-    *nBytesOut = nMbpos;
-
-    return pAnsiStr;
-}
-
-wchar_t *WordObject::utf8_to_utf16be(const char *pUtf8Str, int *nNumOut, BOOL bBigEndian)
-{
-    int nUtf8Num;
-    wchar_t *pUcsStr;
-
-    nUtf8Num = strlen(pUtf8Str);
-    *nNumOut = utf8_to_utf16be_sub( NULL, pUtf8Str, nUtf8Num, TRUE, bBigEndian);
-
-    pUcsStr = (wchar_t *)calloc((*nNumOut + 1), sizeof(wchar_t));
-    utf8_to_utf16be_sub( pUcsStr, pUtf8Str, nUtf8Num, FALSE, bBigEndian);
-
-    return pUcsStr;
-}

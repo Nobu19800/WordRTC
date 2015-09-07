@@ -10,7 +10,9 @@
 #include "WordTask.h"
 #include "WordObject.h"
 
-
+/**
+*@brief Wordの起動、COMの参照をするスレッドのコンストラクタ
+*/
 WordTask::WordTask(WordControl *m_rtc)
 {
 	mrtc = m_rtc;
@@ -19,7 +21,9 @@ WordTask::WordTask(WordControl *m_rtc)
 
 
 
-
+/**
+*@brief スレッドを実行
+*/
 int WordTask::svc()
 {
 	
